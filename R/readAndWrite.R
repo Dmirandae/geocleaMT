@@ -10,7 +10,8 @@
 #'read the file. If \code{'write'} string, the function will write output file.
 #'
 #'@param frmt Vector of characters. The format to read or write can be of 
-#'two types: plain text \code{'txt'} or a R object\code{'RDS'}.
+#'two types: plain text \code{'readTXT'}/\code{'saveTXT'} or a R object
+#' \code{'saveRDS'}/\code{'saveRDS'}.
 #'
 #'@param path Vector of characters. Path to the input file or the 
 #'destination Path to the output file.See details.
