@@ -60,7 +60,7 @@ readAndWrite <- function(action = NULL,
       sp <- readRDS(paste(path, name, sep = ''))
       } else {
         #! else a '.TXT'
-        sp <- read.table(paste(path, name, sep = ''), sep = '\t',header = T)
+        sp <- read.table(paste(path, name, sep = ''), sep = '\t',header = T, fill=T)
       }
     return(sp)
     } else {
