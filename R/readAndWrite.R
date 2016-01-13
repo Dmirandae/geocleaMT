@@ -70,7 +70,7 @@ readAndWrite <- function(action = NULL,
         saveRDS(object,paste(path, name, sep = ''))
         }else{
           #! write  a  '.TXT'
-          write.table(object,paste(path, name, sep = ''),sep = '\t', row.names = F)
+          write.table(object,paste(path, name, sep = ''),sep = '\t', row.names = F,quote = T)
         }
     }
 }
