@@ -984,7 +984,7 @@ YELLOW: Median Propinquity
 
 BLUE: Mode Propinquity
 
-Finally, We also could convert between formats using the _**readAndWrite**_ function, for example from an R object ('RDS') to plain text ('TXT'), so we could read this with any program.
+Finally, we also could convert between formats using the _**readAndWrite**_ function. For example, from an R object ('RDS') to plain text ('TXT'), so we could read this with any program.
 
 ```{r,eval=TRUE,echo=TRUE}
 finalFile <- readAndWrite(action = 'read', frmt = 'readRDS' ,

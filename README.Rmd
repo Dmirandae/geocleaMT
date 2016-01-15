@@ -1,11 +1,18 @@
-# "geocleaMT: An R package to cleaning geographical data from electronic biodatabases"
-author: "Viviana R-Alarcon and Daniel R Miranda-Esquivel"
-date: "2016 - 01 - 10"
+---
+title: 'geocleaMT: An R package to cleaning geographical data from electronic biodatabases'
+author: "Viviana R-Alarcon and Daniel R Miranda-Esquivel (dmiranda@uis.edu.co)"
+date: '`r Sys.Date()`'
+output:
+  pdf_document: default
+  html_document:
+    css: style.css
+vignette: |
+  %\VignetteIndexEntry{'geocleaMT: An R package to cleaning geographical data from electronical biodatabases'} %\VignetteEngine{knitr::rmarkdown} %\usepackage[utf8]{inputenc}
+---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE)
 ```
-
 
 _**geocleaMT**_ is a cleaning protocol for distributional data and an
     automated tool to provide the necessary data mining process before any diversity
@@ -977,7 +984,7 @@ YELLOW: Median Propinquity
 
 BLUE: Mode Propinquity
 
-Finally, We also could convert between formats using the _**readAndWrite**_ function, for example from an R object ('RDS') to plain text ('TXT'), so we could read this with any program.
+Finally, we also could convert between formats using the _**readAndWrite**_ function. For example, from an R object ('RDS') to plain text ('TXT'), so we could read this with any program.
 
 ```{r,eval=TRUE,echo=TRUE}
 finalFile <- readAndWrite(action = 'read', frmt = 'readRDS' ,
