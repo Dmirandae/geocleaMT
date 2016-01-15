@@ -70,7 +70,7 @@ R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 [1]  Global Biodiversity Information Facility. Available online at \url{ http://www.gbif.org/}. 
 
 
-[2] Chamberlain, S. et al. 2015. rgbif: Interface to the Global Biodiversity Information Facility `API'. R package version 0.9.0. The Comprehensive R Archive Network (CRAN). Available online at \url{https://cran.r-project.org/web/packages/rgbif/}.
+[2] Chamberlain, S. et al. 2015. rgbif: Interface to the Global Biodiversity Information Facility `API'. R package version 0.9.0. The Comprehensive R Archive Network (CRAN). Available online at \url{http://cran.r-project.org/package=rgbif}.
 
 
 [3] Wieczorek, J. et al. 2012. Darwin core: An evolving community-developed biodiversity data standard. 

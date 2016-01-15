@@ -13,7 +13,7 @@ read the file. If \code{'write'} string, the function will write output file.}
 
 \item{frmt}{Vector of characters. The format to read or write can be of 
 two types: plain text \code{'readTXT'}/\code{'saveTXT'} or a R object
- \code{'saveRDS'}/\code{'saveRDS'}.}
+\code{'saveRDS'}/\code{'saveRDS'}.}
 
 \item{path}{Vector of characters. Path to the input file or the 
 destination Path to the output file.See details.}

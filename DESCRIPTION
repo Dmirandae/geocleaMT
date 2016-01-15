@@ -1,13 +1,13 @@
 Package: geocleaMT
 Version: 1.0160112
 Date: 2016-01-10
-Title: A package to clean/test georeferenced data
+Title: A Package to Clean/Test Georeferenced Data
 Author: Viviana R-Alarcon and Daniel R. Miranda-Esquivel
 Maintainer: Daniel R. Miranda-Esquivel <dmiranda@uis.edu.co>
 Depends:
     R (>= 3.2.1)
 Import: rgbif,  RJSONIO, RCurl,  maptools, plyr, vegan, modeest
-Description: GeoCleaMT is a cleaning protocol for distributional data and an
+Description: This package is a cleaning protocol for distributional data and an
     automated tool to provide the necessary data mining process before any diversity
     analysis. The protocol takes into account the most common mistakes found in
     distributional records and attempts to minimize its possibility, increasing
