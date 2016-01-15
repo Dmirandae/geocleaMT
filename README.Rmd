@@ -3,16 +3,11 @@ title: 'geocleaMT: An R package to cleaning geographical data from electronic bi
 author: "Viviana R-Alarcon and Daniel R Miranda-Esquivel (dmiranda@uis.edu.co)"
 date: '`r Sys.Date()`'
 output:
-  pdf_document: default
   html_document:
-    css: style.css
+  default
 vignette: |
   %\VignetteIndexEntry{'geocleaMT: An R package to cleaning geographical data from electronical biodatabases'} %\VignetteEngine{knitr::rmarkdown} %\usepackage[utf8]{inputenc}
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE)
-```
 
 _**geocleaMT**_ is a cleaning protocol for distributional data and an
     automated tool to provide the necessary data mining process before any diversity
@@ -57,7 +52,7 @@ library:
 #                    dependencies = T, repos = 'https://www.icesi.edu.co/CRAN/')
 
 library('devtools')
-install_github('alarconvv/geocleaMT', dependencies = TRUE)
+#install_github('alarconvv/geocleaMT', dependencies = TRUE)
 library('geocleaMT')
 
 library('plyr')
@@ -367,7 +362,7 @@ knitr::kable(head(assignAlt), format = 'markdown')
 If there are unassigned points, we can assign the altitude using another elevation database or Google Maps Elevation API. When there are occurrences without elevation assigned from the _**assignAltitude**_ function, we can find them in the file: 'alt.unassigned', in the path of **save.unassigned.in** argument. 
 Thus, we can use the _**elevFromGg**_ function to get the altitude directly from Google Maps Elevation API. This process will be slower, and the API has a restriction, where you can only download around 2500 elevation points every 24 hours. More information about restrictions in: [developers.Google.com](https://developers.Google.com/maps/documentation/elevation/usage-limits).
 
-```{r,eval=FALSE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
+```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
 
 elevFromGg(data               = 'alt.unassigned',
            rd.frmt            = 'readRDS',
@@ -436,7 +431,7 @@ Invasive species could bias the analysis in macroecology or biogeography, becaus
 We use the _**invasiveSp**_ function to reduce this bias. This function is connected to the largest alien species databases (Island Biodiversity and Invasive Species (IBIS) (Kell and Worswick 1997) and Global Invasive Species 
 Database (GISD) (Lowe et al. 2000)).
 
-```{r,eval=FALSE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
+```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
 invasive <- invasiveSp(data                = 'inside.range',
                        rd.frmt             = 'readRDS',
                        path                = 'cutRange/Mammalia/inside/',
