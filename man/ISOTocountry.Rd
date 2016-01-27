@@ -2,24 +2,22 @@
 % Please edit documentation in R/ISOToCountry.R
 \name{ISOTocountry}
 \alias{ISOTocountry}
-\title{Convert from  International Organization for Standardization (ISO 3166-1 alpha-2 and  alpha-3)
+\title{Convert from the International Organization for Standardization (ISO 3166-1 alpha-2 or alpha-3) code
 to country name (English).}
 \usage{
-ISOTocountry(countryCode = NULL, iso = 2)
+ISOTocountry(countryCode = NULL)
 }
 \arguments{
 \item{countryCode}{Data.Frame class. A vector with the ISO-2or ISO-3 Codes.}
-
-\item{iso}{numeric (2 or 3). To define the code whether ISO-2 (iso=2, default value) or ISO-3 (iso=3).}
 }
 \value{
 A table with two columns (countryCode, country)
 }
 \description{
-Given the ISO-2 or ISO-3 code [1], it  will assign the corresponding country name in English.
+Given the lenght of the ISO country code provided (2=ISO-2 or 3=ISO-3[1]), the function will assign the corresponding country name in English.
 }
 \details{
-The user can see the ISO 3166-1 alpha-2 or alpha-3 valid for each country using
+The user can check the ISO 3166-1 alpha-2 or alpha-3 code, valid for each country using
 the line of code : data(ISO2) or data(ISO3).
 }
 \note{
