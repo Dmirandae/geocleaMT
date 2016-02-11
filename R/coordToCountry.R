@@ -10,7 +10,7 @@
 #'
 #'@details
 #'If the coordinate is outside the continents, this can not be assigned and
-#'will be assigned as \code{'NaN'}.
+#'will it will return a \code{'NaN'}.
 #'
 #'@return A table with three columns (decimalLatitude, decimalLongitude, country)
 #'
@@ -18,7 +18,7 @@
 #'@author R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 #'
 #'@note See:
-#'R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+#'R-Alarcon V. and Miranda-Esquivel DR.(submmited) geocleaMT: An R package to
 #'cleaning geographical data from electronic biodatabases.
 #'
 #'@seealso \code{\link{coordToISO}}

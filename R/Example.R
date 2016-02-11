@@ -14,7 +14,7 @@
 #'@keywords datasets
 #'
 #'@references 
-#' [1] R-Alarcon V. and Miranda-Esquivel DR. (in prep) geocleaMT: An R
+#' [1] R-Alarcon V. and Miranda-Esquivel DR. (submitted) geocleaMT: An R
 #'package to cleaning geographical data from electronic biodatabases.
 #'
 #'

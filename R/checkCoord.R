@@ -2,7 +2,7 @@
 #'@title Check coordinates
 #'
 #'@description Separate coordinates with a format different to decimal degrees
-#'and check that the coordinates in this format are into range (latitude:-90, 90 degrees and
+#'and check that the coordinates in this format are into range (latitude: -90, 90 degrees and
 #' longitude: -180, 180 degrees)
 #'
 #'@param data Vector of characters. Name of the input file.
@@ -40,7 +40,7 @@
 #'@author R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 #'
 #'@note See:
-#'R-Alarcon V. and Miranda-Esquivel DR. (in prep.) geocleaMT: An R package to
+#'R-Alarcon V. and Miranda-Esquivel DR. (submitted.) geocleaMT: An R package to
 #'cleaning geographical data from electronic biodatabases.
 #'
 #'@seealso \code{\link{readAndWrite}}

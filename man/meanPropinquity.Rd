@@ -24,7 +24,7 @@ By default it will be written as a R object using
 
 \item{save.info.in}{Vector of characters. Path to the output 
 file with information about Mean propinquity, median, mode, minimal spanning 
-tree, etc; by species or as a whole.}
+tree; by species or as a whole.}
 
 \item{plot.dist}{Logical vector. If \code{'TRUE'} a density plot for the distance 
 between occurrences will be plotted and saved, by species or as a whole. If 
@@ -51,7 +51,7 @@ For  more details about the formats to  write, see
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR. (submitted) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{

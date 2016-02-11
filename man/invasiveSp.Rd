@@ -62,7 +62,7 @@ The user can see the guide using data('ID_DarwinCore) command.
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{

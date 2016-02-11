@@ -12,9 +12,9 @@ data(Altitudes)
 \description{
 Elevation data for the North Andes Block with a resolution of 0.1 decimal degrees.
 Three columns decimalLongitude, decimalLatitude and elevation. The North
-Andes block was divided each 0.1 decimal degree, the elevations associated to
+Andes Block was divided each 0.1 decimal degree, the elevations associated to
 each 0.1 decimal degree were extracted using the \code{\link{elevFromGg}}
-function. This elevation was downloaded from The Google Maps Elevation API [1] and was used for the example in R-Alrcon and Miranda-Esquivel (2016) [2].
+function. This elevation was downloaded from The Google Maps Elevation API [1] and was used for the example in R-Alarcon and Miranda-Esquivel (submitted) [2].
 }
 \examples{
 \donttest{
@@ -26,7 +26,7 @@ plot(America)
 plot(Altitudes, add=T)}
 }
 \references{
-[1] R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R
+[1] R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R
 package to cleaning geographical data from electronic biodatabases.
 
 [2] The Google Maps Elevation API.  Available online at \url{https://developers.google.com/maps/documentation/elevation/intro}

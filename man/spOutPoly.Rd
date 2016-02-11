@@ -63,7 +63,7 @@ of conditions.
 \details{
 #'
 To see the descriptions and details about conditions and parameters the user 
-should check  R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+should check  R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 
 The condition A, B3 and  C for species classification are executed by
@@ -76,7 +76,7 @@ For  more details about the formats to read and/or write, see
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{

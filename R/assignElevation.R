@@ -12,7 +12,7 @@
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
 #'By default it will be read as a R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#' \code{'readRDS'} argument, but it can be read as a plain text file, using 
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param elevations.db Data.Frame object. The elevations database, 
@@ -54,7 +54,7 @@
 #'@author R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 #'
 #'@note See:
-#'R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+#'R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 #'cleaning geographical data from electronic biodatabases.
 #'
 #'@seealso \code{\link{elevFromGg}}

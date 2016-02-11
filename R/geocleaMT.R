@@ -5,38 +5,38 @@
 #'@description Although, the functions could be 
 #' used in the suggested pipelines, each function is suited to perform an 
 #' specific task or a set of them, given the package a high level of 
-#' customizability [1]
+#' customizability[1]
 #' 
 #' @description Functions may be used for performing processes as:
 #' 
-#' @description Read input files in Darwin Core format using an R based function  [\code{\link{readDbR}}] or a bash+R function [\code{\link{readDbBash}}]
+#' @description Read input files in Darwin Core format using an R based function  [\code{\link{readDbR}}] or a bash+R function [\code{\link{readDbBash}}].
 #' 
-#' Assign elevations to the data set  [\code{\link{assignElevation}}]
+#' Assign elevations to the data set  [\code{\link{assignElevation}}].
 #' 
-#' Eliminate invasive species [\code{\link{invasiveSp}}]
+#' Eliminate invasive species [\code{\link{invasiveSp}}].
 #' 
-#' Separate occurrences with and without geocode [\code{\link{splitGeoref}}]
+#' Separate occurrences with and without geocode [\code{\link{splitGeoref}}].
 #'
-#' Check decimal degree coordinates format [\code{\link{checkCoord}}]
+#' Check decimal degree coordinates format [\code{\link{checkCoord}}].
 #' 
-#' Delete duplicated points or points with latitude and longitude assigned as 0.0 [\code{\link{splitGeoref}}]
+#' Delete duplicated points or points with latitude and longitude assigned as 0.0 [\code{\link{splitGeoref}}].
 #' 
-#' Separate land/sea occurrences  [\code{\link{pointsAtSea}}]
+#' Separate land/sea occurrences  [\code{\link{pointsAtSea}}].
 #' 
-#' Delete points/species outside of a given distribution [\code{\link{spOutPoly}}] 
+#' Delete points/species outside of a given distribution [\code{\link{spOutPoly}}].
 #'
-#' Separate species with a minimum number of occurrences [\code{\link{usefulSp}}] 
+#' Separate species with a minimum number of occurrences [\code{\link{usefulSp}}]. 
 #' 
 #' Verify that coordinates are into the range for latitude (-90,90) and 
-#' longitude (-180,180) [\code{\link{checkCoord}}]
+#' longitude (-180,180) [\code{\link{checkCoord}}].
 #' 
-#' Eliminate specific records [\code{\link{delPointsOrSp}}]
+#' Eliminate specific records [\code{\link{delPointsOrSp}}].
 #'
 #' Calculate for each species some general descriptors (mean 
-#' propinquity, extreme distances, etc) [\code{\link{meanPropinquity}}]
+#' propinquity, extreme distances) [\code{\link{meanPropinquity}}].
 #' 
 #'@references
-#' [1] R-Alarcon, V. and Miranda-Esquivel, D.R. (in prep.) geocleaMT : An R package for cleaning/testing geographical data from electronic biodatabases.
+#' [1] R-Alarcon, V. and Miranda-Esquivel, D.R. (submitted.) geocleaMT : An R package for cleaning/testing geographical data from electronic biodatabases.
 
 '_PACKAGE'
 

@@ -27,7 +27,7 @@
 #'
 #'@param save.info.in Vector of characters. Path to the output 
 #'file with information about Mean propinquity, median, mode, minimal spanning 
-#'tree, etc; by species or as a whole.
+#'tree; by species or as a whole.
 #' 
 #'@param save.plot.in Vector of characters. Path to the output 
 #'file for each plot by species or as a whole.
@@ -44,7 +44,7 @@
 #'@author R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 #'
 #'@note See:
-#'R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+#'R-Alarcon V. and Miranda-Esquivel DR. (submitted) geocleaMT: An R package to
 #'cleaning geographical data from electronic biodatabases.
 #'
 #'@seealso \code{\link{readAndWrite}}

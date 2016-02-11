@@ -35,7 +35,7 @@ the second one has the wrong coordinates for the same species.
 }
 \description{
 Separate coordinates with a format different to decimal degrees
-and check that the coordinates in this format are into range (latitude:-90, 90 degrees and
+and check that the coordinates in this format are into range (latitude: -90, 90 degrees and
 longitude: -180, 180 degrees)
 }
 \details{
@@ -47,7 +47,7 @@ The user can see the guide using data('ID_DarwinCore) command.
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR. (in prep.) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR. (submitted.) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{

@@ -10,12 +10,12 @@
 #'
 #' @usage data(Africa)
 #'
-#' @format Format class \code{'SpatialPolygonsDataFrame'} [package \code{'sp'}].
+#' @format Format class \code{'SpatialPolygonsDataFrame'} [package \code{'sp'}][1].
 #'
 #' @keywords datasets
 #'
 #' @references 
-#' [1] Bivand  et al. (2015) maptools: Tools for Reading and Handling Spatial Objects. CRAN. Version 0.8-37. Available online at \url{http://r-forge.r-project.org/projects/maptools/}
+#' [1] Bivand et al. (2015) Maptools: Tools for Reading and Handling Spatial Objects. CRAN. Version 0.8-37. Available online at \url{http://r-forge.r-project.org/projects/maptools/}
 #'
 #' @source \url{http://r-forge.r-project.org/projects/maptools/}
 #'

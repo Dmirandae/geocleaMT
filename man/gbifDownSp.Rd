@@ -60,7 +60,7 @@ For more details about the formats to read and/or write, see
 }
 \note{
 See:
-R-Alarcon V, Miranda-Esquivel DR.(in prep) geocleaMT: An R package to cleaning
+R-Alarcon V, Miranda-Esquivel DR.(submitted) geocleaMT: An R package to cleaning
 geographical data from electronic biodatabases.
 }
 \author{

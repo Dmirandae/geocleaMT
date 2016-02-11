@@ -15,7 +15,7 @@
 #'@param path Vector of characters. Path to the input file.
 #'
 #'@param API.Key If the user has a google's API key, it must be used here,
-#' otherwise no more than 2000 elevations could be assigned.
+#' otherwise no more than 2500 elevations could be assigned.
 #'
 #'See details.
 #'
@@ -64,7 +64,7 @@
 #'@author R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 #'
 #'@note See:
-#'R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to cleaning geographical data from electronic biodatabases.
+#'R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to cleaning geographical data from electronic biodatabases.
 #'
 #'@seealso \code{\link{assignElevation}}
 #'

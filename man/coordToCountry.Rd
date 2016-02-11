@@ -19,11 +19,11 @@ corresponding country name in English.
 }
 \details{
 If the coordinate is outside the continents, this can not be assigned and
-will be assigned as \code{'NaN'}.
+will it will return a \code{'NaN'}.
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR.(submmited) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{

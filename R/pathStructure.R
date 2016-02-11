@@ -3,7 +3,7 @@
 #'@title  Folder structure
 #'
 #'@description Create the file structure for the protocol proposed 
-#' R-Alarcon & Miranda-Esquivel (in prep) [1].
+#' R-Alarcon & Miranda-Esquivel (submitted) [1].
 #'
 #'@param path.dir Vector of characters. Path to the folders' structure for all data/results.
 #'
@@ -19,11 +19,11 @@
 #'
 #'
 #'@note See:
-#'[1] R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+#'[1] R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 #'cleaning geographical data from electronic biodatabases.
 #'
 #' @references 
-#'[1] R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+#'[1] R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 #'cleaning geographical data from electronic biodatabases.
 
 

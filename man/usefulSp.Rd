@@ -8,7 +8,7 @@ usefulSp(data = NULL, path = NULL, cut.off = 3, rd.frmt = "readRDS",
   wrt.frmt = "saveRDS", save.useful.in = NULL, save.useless.in = NULL)
 }
 \arguments{
-\item{data}{Vector of characters. Name of the input file..}
+\item{data}{Vector of characters. Name of the input file.}
 
 \item{path}{The path for the file or files.}
 
@@ -39,7 +39,7 @@ Column names must follow Darwin Core2[1] standard. See data('ID_DarwinCore).
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR.(submitted) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{

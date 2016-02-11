@@ -16,7 +16,7 @@ List of Countries Names in English.
 
 }
 \references{
-R-Alarcon V. and Miranda-Esquivel DR. (in prep) geocleaMT: An R
+R-Alarcon V. and Miranda-Esquivel DR. (submitted) geocleaMT: An R
 package to cleaning geographical data from electronic biodatabases.
 }
 \keyword{datasets}

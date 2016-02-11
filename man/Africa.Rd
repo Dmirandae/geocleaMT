@@ -4,7 +4,7 @@
 \name{Africa}
 \alias{Africa}
 \title{Vectorial layer: African continent}
-\format{Format class \code{'SpatialPolygonsDataFrame'} [package \code{'sp'}].}
+\format{Format class \code{'SpatialPolygonsDataFrame'} [package \code{'sp'}][1].}
 \source{
 \url{http://r-forge.r-project.org/projects/maptools/}
 }
@@ -22,7 +22,7 @@ data(Africa)
 plot(Africa)}
 }
 \references{
-[1] Bivand  et al. (2015) maptools: Tools for Reading and Handling Spatial Objects. CRAN. Version 0.8-37. Available online at \url{http://r-forge.r-project.org/projects/maptools/}
+[1] Bivand et al. (2015) Maptools: Tools for Reading and Handling Spatial Objects. CRAN. Version 0.8-37. Available online at \url{http://r-forge.r-project.org/projects/maptools/}
 }
 \keyword{datasets}
 

@@ -36,7 +36,7 @@ It reads and/or writes a file in plain text format (txt) using the
 functions \code{\link{read.table}} and/or \code{\link{write.table}}. 
 To maintain the standard manipulation the arguments for both 
 functions \code{\link{read.table}} and \code{\link{write.table}} parameters, are the default,
-except for the parameters: sep= 'TAB', header= T, quotes= F and rownames = F.
+except for the parameters: sep= 'TAB', header= TRUE, quotes= FALSE and rownames = FALSE.
 
 If the argument in the action parameter is \code{'write'}, the argument in object 
 and name parameters must be assigned. But, if the argument in 
@@ -45,7 +45,7 @@ must be omitted.
 }
 \note{
 See:
-R-Alarcon V. and Miranda-Esquivel DR.(in prep) geocleaMT: An R package to
+R-Alarcon V. and Miranda-Esquivel DR. (submitted) geocleaMT: An R package to
 cleaning geographical data from electronic biodatabases.
 }
 \author{
