@@ -10,13 +10,15 @@ usefulSp(data = NULL, path = NULL, cut.off = 3, rd.frmt = "readRDS",
 \arguments{
 \item{data}{Vector of characters. Name of the input file.}
 
-\item{path}{The path for the file or files.}
+\item{path}{Vector of characters. Path to the input file.}
 
 \item{cut.off}{Numeric. Minimal (absolute) number of occurrences for a given 
 species, the default value is 3, as the minimal number of points to draw a polygon.}
 
-\item{rd.frmt}{Character. Input file format, by default it uses a .RDS format. 
-See details.}
+\item{rd.frmt}{Vector of characters. The file format to read. 
+By default it will be read  as a  R object using the
+\code{'readRDS'} argument, but it can be read as plain text using the
+\code{'readTXT'} argument. See details.}
 
 \item{wrt.frmt}{Character. Output file format,  by default it uses a \code{'.RDS'}
 format, although it could save a txt table. See details.}

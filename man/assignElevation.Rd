@@ -14,22 +14,22 @@ assignElevation(data = NULL, path.data = NULL, rd.frmt = "readRDS",
 \item{path.data}{Vector of characters. Path to the input file.}
 
 \item{rd.frmt}{Vector of characters. The file format to read. 
-By default it will be read as a R object using 
-\code{'readRDS'} argument, but it can be read as a plain text file, using 
+By default it will be read as a R object using the
+\code{'readRDS'} argument, but it can be read as a plain text file, using the
 \code{'readTXT'} argument. See details.}
 
 \item{elevations.db}{Data.Frame object. The elevations database, 
-tree columns (decimalLatitude, decimalLongitude, elevation)}
+tree columns (decimalLatitude, decimalLongitude, elevation).}
 
 \item{round.coord}{Numeric vector. Decimal to round the coordinate to
 assign the elevation. This value must be same of the coordinate 
 resolution of database assigned as argument on \code{elevation.db} parameter. 
 Example: the resolution of the coordinates in the databases assigned on 
-elevation.db is one decimal, then \code{round.coord} must be equal to 1 (round.coord=1).}
+\code{elevation.db} is one decimal, then \code{round.coord} must be equal to 1 (round.coord=1).}
 
 \item{wrt.frmt}{Vector of characters. Format to save output
-file. By default it will be written  as a  R object using 
-\code{'saveRDS'} argument, but it can be saved as plain text using 
+file. By default it will be written  as a  R object using the
+\code{'saveRDS'} argument, but it can be saved as plain text using the
 \code{'saveTXT'} argument. See details.}
 
 \item{save.assigned.in}{Vector of characters. Path to

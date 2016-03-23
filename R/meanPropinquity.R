@@ -68,7 +68,7 @@ meanPropinquity <- function(coord.table  = NULL,
   
   if (any(plot.dist, plot.onMap) == TRUE ) {
     if (is.null(save.plot.in)) {
-      message('If any plot argument is TRUE, please : Assign \'save.plot.in\' argument ')
+      message('If any plot argument is TRUE, please : Assign the \'save.plot.in\' argument ')
     }
   }
   
@@ -90,9 +90,9 @@ meanPropinquity <- function(coord.table  = NULL,
     modeDist <- mlv(mst$dist,method = 'mfv', na.rm = T)
     modeSkewness <- modeDist$skewness
     infoTable <- as.data.frame(matrix(data = NA,nrow = 1,ncol = 9))
-    colnames(infoTable) <- c('Occurrences','MeanPropinquity','Median','SD','MinDist',
+    colnames(infoTable) <- c('Occ','MeanPropinquity','Median','SD','MinDist',
                              'MaxDist','Skewness','Mode','ModeSkewness')
-    infoTable$Occurrences <- nrow(coord.table)
+    infoTable$Occ <- nrow(coord.table)
     infoTable$MeanPropinquity <- meanDist 
     infoTable$Median <- medianDist
     infoTable$SD <- sdDist
@@ -143,7 +143,7 @@ meanPropinquity <- function(coord.table  = NULL,
     spNames <- as.character(unique(coord.table$species))
    
     infoTable <- as.data.frame(matrix(data = NA,nrow = length(spNames),ncol = 10))
-    colnames(infoTable) <- c('Species','Occurrences','MeanPropinquity','Median','SD','MinDist',
+    colnames(infoTable) <- c('Sp','Occ','MeanPropinquity','Median','SD','MinDist',
                              'MaxDist','Skewness','Mode','ModeSkewness')
     for (i in 1:length(spNames)) {
      
@@ -161,8 +161,8 @@ meanPropinquity <- function(coord.table  = NULL,
       modeDist <- mlv(mst$dist,method = 'mfv', na.rm = T)
       modeSkewness <- modeDist$skewness
      
-      infoTable$Species[i] <- as.character(spNames[i])
-      infoTable$Occurrences[i] <- nrow(spOccurrences)
+      infoTable$Sp[i] <- as.character(spNames[i])
+      infoTable$Occ[i] <- nrow(spOccurrences)
       infoTable$MeanPropinquity[i] <- meanDist 
       infoTable$Median[i] <- medianDist
       infoTable$SD[i] <- sdDist
@@ -196,7 +196,7 @@ meanPropinquity <- function(coord.table  = NULL,
       dev.off()
       
     }
-      cat(paste('Saving information:',as.character(spNames[i], sep= ' ')))
+      cat(paste('Saving information:',as.character(spNames[i], sep= ' '),'\n',sep=''))
       }
     readAndWrite(action = 'write', frmt = wrt.frmt, path = save.info.in,
                  name = 'InfoPropinquity_species', object = infoTable)

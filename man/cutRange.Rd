@@ -14,8 +14,8 @@ cutRange(data = NULL, path = NULL, rd.frmt = "readRDS", range.from = 0,
 \item{path}{Vector of characters. Path to the input file.}
 
 \item{rd.frmt}{Vector of characters. File format to read. 
-By default it will be read  as a  R object using 
-\code{'readRDS'} argument, but it can be read as plain text using 
+By default it will be read  as a  R object using the
+\code{'readRDS'} argument, but it can be read as plain text using the
 \code{'readTXT'} argument. See details.}
 
 \item{range.from}{Numeric vector. Lower bound of the range of the distribution}
@@ -23,8 +23,8 @@ By default it will be read  as a  R object using
 \item{range.to}{Numeric vector. Upper bound of the range of the distribution.}
 
 \item{wrt.frmt}{Vector of characters. Format to save output
-file. By default it will be written  as a  R object using 
-\code{'saveRDS'} argument, but it can be saved as plain text using 
+file. By default it will be written  as a  R object using the
+\code{'saveRDS'} argument, but it can be saved as plain text using the
 \code{'saveTXT'} argument. See details.}
 
 \item{save.inside.in}{Vector of characters. Path to the output 

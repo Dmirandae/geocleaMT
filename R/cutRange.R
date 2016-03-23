@@ -7,8 +7,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. File format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -18,8 +18,8 @@
 #'@param range.to Numeric vector. Upper bound of the range of the distribution.
 #'
 #'@param  wrt.frmt Vector of characters. Format to save output
-#'file. By default it will be written  as a  R object using 
-#' \code{'saveRDS'} argument, but it can be saved as plain text using 
+#'file. By default it will be written  as a  R object using the
+#' \code{'saveRDS'} argument, but it can be saved as plain text using the
 #' \code{'saveTXT'} argument. See details.
 #'
 #'@param save.inside.in Vector of characters. Path to the output 
@@ -67,6 +67,11 @@ cutRange <- function(data            = NULL,
   
   data <- readAndWrite(action = 'read', frmt = rd.frmt, 
                             path = path, name = data)
+  tab.info <- as.data.frame(matrix(NA, 1, 6))
+  colnames(tab.info) <- c('Total.Occ','Total.Sp', 'Uniq.Sp.Inside', 
+                          'Uniq.Sp.Outside','Sp.In.and.Outside','Total.In.Range')
+  tab.info$Total.Sp <- length(unique(data$species))
+  tab.info$Total.Occ <- nrow(data)
   data <- as.data.frame(unique(data))
   #Select species inside range
   inside.range <- subset(data, (as.numeric(as.character(data$elevation))) >
@@ -82,12 +87,12 @@ cutRange <- function(data            = NULL,
   readAndWrite(action = 'write', frmt = wrt.frmt, path = save.outside.in,
                  name = 'outside.range', object = outside.range)
   #Count different items like Total species, total occurrences etc
-  tab.info <- as.data.frame(matrix(NA, 1, 4))
-  colnames(tab.info) <- c('Total.occurrences', 'Total.sp', 'sp.inside', 
-                          'sp.outside')
-  tab.info$Total.occurrences <- nrow(data)
-  tab.info$Total.sp <- length(unique(data$species))
-  tab.info$sp.inside <- length(unique(inside.range$species))
-  tab.info$sp.outside <- length(unique(outside.range$species))
-  return(tab.info)
+  tab.info$Uniq.Sp.Inside <- length(inside.range$species[which(!unique(inside.range$species) %in%
+                                                                  unique(outside.range$species))])
+  tab.info$Uniq.Sp.Outside <- as.numeric(length(outside.range$species[which(!unique(outside.range$species) %in%
+                                                              unique(inside.range$species))]))
+  tab.info$Sp.In.and.Outside <-as.numeric(tab.info$Total.Sp) - as.numeric(tab.info$Uniq.Sp.Outside) - as.numeric(tab.info$Uniq.Sp.Inside)
+  tab.info$Total.In.Range <- as.numeric(tab.info$Total.Sp) - as.numeric(tab.info$Uniq.Sp.Outside)
+  
+   return(tab.info)
 }

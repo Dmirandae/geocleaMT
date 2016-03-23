@@ -7,7 +7,7 @@
 coordToCountry(coordinatesTable = NULL)
 }
 \arguments{
-\item{coordinatesTable}{Data.Frame class. A data frame with at least two columns
+\item{coordinatesTable}{Data Frame class. A data frame with at least two columns
 called \code{decimalLatitude} and \code{'decimalLongitude'}.}
 }
 \value{

@@ -8,8 +8,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the data file(s).
@@ -73,11 +73,11 @@ splitGeoref <- function(data             = NULL,
                         save.ungeoref.in = NULL) {
   #! tabla de informacion 
   tab.info <- as.data.frame(matrix(NA, length(data), 4))
-  colnames(tab.info) <- c('Species', 'georef', 'ungeoref', 'Min.occ')
+  colnames(tab.info) <- c('Sp', 'Georef', 'Ungeoref', 'Min.occ')
   #! para cada uno de las species en data
   for (i in 1:length(data)) {
     #! Asigne el nombre de la especie
-    tab.info$Species[i] <- data[i]
+    tab.info$Sp[i] <- data[i]
     #! leer archivo
     sp <- readAndWrite(action = 'read', frmt = rd.frmt,
                          path = path, name = data[i])
@@ -123,7 +123,7 @@ splitGeoref <- function(data             = NULL,
                        path = save.georef.in , name = data[i], object = georef)
         } 
       #! Asigne informacion de georeferenciados en la tabla de informacion
-      tab.info$georef[i] <- length(georef$species)
+      tab.info$Georef[i] <- length(georef$species)
       #######! Separe los no georeferenciados (No asignados o asignados como '0')
       ungeoref <- subset(sp.temp1,is.na(as.numeric(as.character(sp.temp1$decimalLatitude))
                                            & as.numeric(as.character(sp.temp1$decimalLongitude)))
@@ -133,7 +133,7 @@ splitGeoref <- function(data             = NULL,
         readAndWrite(action = 'write', frmt = wrt.frmt, 
                        path = save.ungeoref.in, name = data[i], 
                        object = ungeoref)
-        tab.info$ungeoref[i] <- length(ungeoref$species)
+        tab.info$Ungeoref[i] <- length(ungeoref$species)
       }
       #! si desde el inicio no cumple con el un minimo numero de ocurrencias, guarde como Min.occ
       } else {

@@ -7,8 +7,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -68,9 +68,9 @@ stackSp <- function(data            = NULL,
     print(paste('Species',i,':',data[i],sep = ''))
   }
   tab.info <- as.data.frame(matrix(NA,1,2))
-  colnames(tab.info) <- c('TotalSp', 'TotalOccurrences')
-  tab.info$TotalSp <- length(unique(stack.temp0$species))
-  tab.info$TotalOccurrences <- nrow(stack.temp0)
+  colnames(tab.info) <- c('Total.Sp', 'Total.Occ')
+  tab.info$Total.Sp <- length(unique(stack.temp0$species))
+  tab.info$Total.Occ<- nrow(stack.temp0)
   readAndWrite(action = 'write', frmt = wrt.frmt , object = stack.temp0,
                  path = save.staking.in, name = save.name)
   return(tab.info)

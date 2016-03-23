@@ -3,11 +3,16 @@ title: 'geocleaMT: An R package to cleaning geographical data from electronic bi
 author: "Viviana R-Alarcon and Daniel R Miranda-Esquivel (dmiranda@uis.edu.co)"
 date: '`r Sys.Date()`'
 output:
+  pdf_document: default
   html_document:
-  default
+    css: style.css
 vignette: |
   %\VignetteIndexEntry{'geocleaMT: An R package to cleaning geographical data from electronical biodatabases'} %\VignetteEngine{knitr::rmarkdown} %\usepackage[utf8]{inputenc}
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
 
 _**geocleaMT**_ is a cleaning protocol for distributional data and an
     automated tool to provide the necessary data mining process before any diversity
@@ -33,10 +38,10 @@ First, we remove everything to start with a clean session. If there is an open g
   
   
 ```{r,eval=TRUE, results='hide'}
-rm(list = ls())
-
-if (dev.cur() != 1){
-	dev.off()}
+rm(list = ls())	
+	
+if (dev.cur() != 1){	
+	dev.off()}	
 ```
 
 
@@ -51,19 +56,19 @@ library:
 #                    'maptools', 'data.table', 'RJOSONIO', 'reshape2'), 
 #                    dependencies = T, repos = 'https://www.icesi.edu.co/CRAN/')
 
-library('devtools')
-#install_github('alarconvv/geocleaMT', dependencies = TRUE)
-library('geocleaMT')
-
-library('plyr')
-library('rgbif')
-library('RCurl')
-library('vegan')
-library('modeest')
-library('maptools')
-library('data.table')
-library('RJSONIO')
-library('reshape2')
+library('devtools')	
+#install_github('alarconvv/geocleaMT', dependencies = TRUE)	
+library('geocleaMT')	
+	
+library('plyr')	
+library('rgbif')	
+library('RCurl')	
+library('vegan')	
+library('modeest')	
+library('maptools')	
+library('data.table')	
+library('RJSONIO')	
+library('reshape2')	
 ```
 
 
@@ -72,14 +77,14 @@ exists there is no problem, just some warnings that we do not show):
 
 
 ```{r,eval=TRUE, echo=TRUE}
-Sys.chmod(paths = '~/', mode = '7777', use_umask = TRUE)
-
-dir.create(path = '~/geocleanMTtest/', showWarnings = FALSE, recursive = FALSE, mode = '7777')
-
-pathToFiles <- '~/geocleanMTtest/'
-
-dir.create(path = pathToFiles, showWarnings = FALSE)
-
+Sys.chmod(paths = '~/', mode = '7777', use_umask = TRUE)	
+	
+dir.create(path = '~/geocleanMTtest/', showWarnings = FALSE, recursive = FALSE, mode = '7777')	
+	
+pathToFiles <- '~/geocleanMTtest/'	
+	
+dir.create(path = pathToFiles, showWarnings = FALSE)	
+	
 setwd(pathToFiles)
 
 # To check everything is fine:
@@ -211,11 +216,11 @@ We can get the example file from the GitHub repository in the example folder, or
 # we will get the example file from data(Example). 
 # If you downloaded it from GBIF, the file will in txt format.
  
-data(Example)
+data(Example)	
 
-dir.create(path = 'data/', showWarnings = FALSE, recursive = FALSE, mode = '7777')
-
-readAndWrite(action = 'write', path = 'data/', frmt = 'saveTXT', 
+dir.create(path = 'data/', showWarnings = FALSE, recursive = FALSE, mode = '7777')	
+	
+readAndWrite(action = 'write', path = 'data/', frmt = 'saveTXT', 	
              name = 'Example.txt', object = Example)
 
 ```
@@ -225,11 +230,10 @@ We can see the structure, and some basic statistics of the input data, including
 
 
 ```{r,eval=TRUE}
-str(Example)
-
-head(Example, 1L)
-
-levels(Example$species)
+	
+head(Example, 1L)	
+	
+levels(Example$species)	
 ```
 
 
@@ -239,14 +243,14 @@ Now, we read the initial data set. As the file to load has fewer than 100.000 oc
 ```{r,eval=TRUE}
 # Load the txt file 
 
-readDbR <- readDbR(data          = 'Example.txt',
-                   path.data     = 'data/' ,
-                   cut.col       = c('gbifID', 'decimalLatitude', 'decimalLongitude',
-                                     'elevation', 'speciesKey', 'species'),
-                   delt.undeterm = TRUE,
-                   save.name     = 'out.readDbR',
-                   wrt.frmt      = 'saveRDS',
-                   save.in       = 'readDBR/Mammalia/')
+readDbR <- readDbR(data          = 'Example.txt',	
+                   path.data     = 'data/' ,	
+                   cut.col       = c('gbifID', 'decimalLatitude', 'decimalLongitude',	
+                                     'elevation', 'speciesKey', 'species'),	
+                   delt.undeterm = TRUE,	
+                   save.name     = 'out.readDbR',	
+                   wrt.frmt      = 'saveRDS',	
+                   save.in       = 'readDbR/Mammalia/')	
 
 ```
 
@@ -259,10 +263,10 @@ knitr::kable(readDbR, format = 'markdown')
 
 ```
 
-The output file will be saved in 'readDBR/Mammalia/' path:
+The output file will be saved in 'readDbR/Mammalia/' path:
 
 ```{r,eval=TRUE,echo=TRUE}
-out.readDbR <- readAndWrite(action = 'read', path = 'readDBR/Mammalia/',
+out.readDbR <- readAndWrite(action = 'read', path = 'readDbR/Mammalia/',
                             frmt = 'readRDS', name = 'out.readDbR')
 
 
@@ -303,7 +307,7 @@ readDbBash <- readDbBash(data          = 'Example.txt',
                          delt.undeterm = T,
                          save.name     = 'out.readDbBash',
                          wrt.frmt      = 'saveRDS',
-                         save.in       = 'readDBBash/Mammalia/')
+                         save.in       = 'readDbBash/Mammalia/')
 }
 ```
 
@@ -339,19 +343,19 @@ points(Altitudes, pch = '.', col = 'grey', cex = 0.01 )
 We can assign the elevation using the _**assignAltitude**_ function. If the resolution in the elevation database used is 0.1, we should assign 1 in the **round.coord** argument. For example if the coordinate is Lat: 5.3456, Long: -74.2345 and the database is Lat: 5.3, Long: -74.2, elev: 856 MASL. Then the original coordinates will be rounded to Lat: 5.3, Long: -74.2 and 856 MASL will be assigned as the approximate elevation.
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-data('Altitudes')
-
-assignAlt <- assignElevation(data = 'out.readDbR',
-                            path.data = 'readDBR/Mammalia/',
-                            rd.frmt = 'readRDS' ,
-                            elevations.db = Altitudes ,
-                            round.coord = 1,
-                            wrt.frmt = 'saveRDS',
-                            save.assigned.in = 'assignElevation/Mammalia/alt.assig/',
-                            save.unassigned.in = 'assignElevation/Mammalia/alt.unassig/')
-
-readAndWrite(action = 'write', frmt  = 'saveTXT' , path = 'tables/',
-             name = 'assignAltitude_example.txt', object = assignAlt)
+data('Altitudes')	
+	
+assignAlt <- assignElevation(data = 'out.readDbR',	
+                            path.data = 'readDbR/Mammalia/',	
+                            rd.frmt = 'readRDS' ,	
+                            elevations.db = Altitudes ,	
+                            round.coord = 1,	
+                            wrt.frmt = 'saveRDS',	
+                            save.assigned.in = 'assignElevation/Mammalia/alt.assig/',	
+                            save.unassigned.in = 'assignElevation/Mammalia/alt.unassig/')	
+	
+readAndWrite(action = 'write', frmt  = 'saveTXT' , path = 'tables/',	
+             name = 'assignAltitude_example.txt', object = assignAlt)	
 
 ```
 
@@ -364,20 +368,29 @@ Thus, we can use the _**elevFromGg**_ function to get the altitude directly from
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
 
-elevFromGg(data               = 'alt.unassigned',
-           rd.frmt            = 'readRDS',
-           path               = 'assignElevation/Mammalia/alt.unassig/',
-           API.Key            = NULL,
-           starts.in          = 1 ,
-           round.coord        = 1 ,
-           save.name          = 'alt.assigned',
-           wrt.frmt           = 'saveRDS',
-           save.assigned.in   = 'elevFromGg/Mammalia/alt.assig/' ,
-           save.unassigned.in = 'elevFromGg/Mammalia/alt.unassig/' ,
-           save.temp.in       = 'elevFromGg/Mammalia/')
+FromGg<-elevFromGg(data               = 'alt.unassigned',	
+           rd.frmt            = 'readRDS',	
+           path               = 'assignElevation/Mammalia/alt.unassig/',	
+           API.Key            = NULL,	
+           starts.in          = 1 ,	
+           round.coord        = 4 ,	
+           save.name          = 'alt.assigned',	
+           wrt.frmt           = 'saveRDS',	
+           save.assigned.in   = 'elevFromGg/Mammalia/alt.assig/' ,	
+           save.unassigned.in = 'elevFromGg/Mammalia/alt.unassig/' ,	
+           save.temp.in       = 'elevFromGg/Mammalia/')	
 
+
+readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',
+             name = 'FromGg_example.txt', object = FromGg)
 ```
- 
+
+
+```{r,eval=TRUE,echo=TRUE}
+knitr::kable(FromGg, format = 'markdown')
+```
+
+
 NOTE: If we get the message `Error in Call.API$results[[1]] :
 subscript out of bounds error', you must wait for 24 hours to access
 again the Google Maps Elevation API.
@@ -409,17 +422,17 @@ We need to get species with occurrences in the elevation range from 0
 to 1000 MAMSL, then we use the _**cutRange**_ function.
 
 ```{r,eval=TRUE}
-cutRange <- cutRange(data            = 'completedElevation' ,
-                     path            = 'elevFromGg/Mammalia/alt.assig/',
-                     rd.frmt         = 'readRDS',
-                     range.from      = 0,
-                     range.to        = 1000,
-                     wrt.frmt        = 'saveRDS',
-                     save.inside.in  = 'cutRange/Mammalia/inside/',
-                     save.outside.in = 'cutRange/Mammalia/outside/')
-
-readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',
-             name = 'cut_example.txt', object = cutRange)
+cutRange <- cutRange(data            = 'completedElevation' ,	
+                     path            = 'elevFromGg/Mammalia/alt.assig/',	
+                     rd.frmt         = 'readRDS',	
+                     range.from      = 0,	
+                     range.to        = 1000,	
+                     wrt.frmt        = 'saveRDS',	
+                     save.inside.in  = 'cutRange/Mammalia/inside/',	
+                     save.outside.in = 'cutRange/Mammalia/outside/')	
+	
+readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',	
+             name = 'cut_example.txt', object = cutRange)	
 ```
 
 ```{r,eval=TRUE,echo=TRUE}
@@ -432,18 +445,18 @@ We use the _**invasiveSp**_ function to reduce this bias. This function is conne
 Database (GISD) (Lowe et al. 2000)).
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-invasive <- invasiveSp(data                = 'inside.range',
-                       rd.frmt             = 'readRDS',
-                       path                = 'cutRange/Mammalia/inside/',
-                       starts.in           = 1,
-                       save.Sp.list        = TRUE,
-                       wrt.frmt            = 'saveRDS',
-                       save.foreign.in     = 'invasiveSP/Mammalia/foreign/',
-                       save.non.foreign.in = 'invasiveSP/Mammalia/non.foreign/',
-                       save.temp.in        = 'invasiveSP/Mammalia/')
-
-readAndWrite(action = 'write', frmt   = 'saveTXT', path   = 'tables/',
-             name   = 'invasive_Mammalia.txt', object = invasive)
+invasive <- invasiveSp(data                = 'inside.range',	
+                       rd.frmt             = 'readRDS',	
+                       path                = 'cutRange/Mammalia/inside/',	
+                       starts.in           = 1,	
+                       save.Sp.list        = TRUE,	
+                       wrt.frmt            = 'saveRDS',	
+                       save.foreign.in     = 'invasiveSp/Mammalia/foreign/',	
+                       save.non.foreign.in = 'invasiveSp/Mammalia/non.foreign/',	
+                       save.temp.in        = 'invasiveSp/Mammalia/')	
+	
+readAndWrite(action = 'write', frmt   = 'saveTXT', path   = 'tables/',	
+             name   = 'invasive_Mammalia.txt', object = invasive)	
 ```
 
 If the process is stopped, you can reset it using the last number reported in 
@@ -462,13 +475,13 @@ Finally, we are done. Now we have the list of species to download from GBIF in t
 
 ```{r,eval = TRUE, echo = TRUE}
 
-toDownload <- readAndWrite(action = 'read', frmt = 'readRDS',
-                           path = 'invasiveSP/Mammalia/non.foreign/',
-                           name = 'input.rgbif.non.foreign')
-
-str(toDownload)
-
-head(toDownload)
+toDownload <- readAndWrite(action = 'read', frmt = 'readRDS',	
+                           path = 'invasiveSp/Mammalia/non.foreign/',	
+                           name = 'input.rgbif.non.foreign')	
+	
+str(toDownload)	
+	
+head(toDownload)	
 
 ```
 
@@ -480,24 +493,23 @@ When we have the list of non-invasive species that inhabit on The Biogeographic 
 
 The _**gbifDownSp**_ function works as a wrapper for the **occ_search** function from the _**rgif**_ package. You can use some additional parameters inherited from **occ_search** as **limit**, **basisOfRecord**, **country**, **publishingCountry**, **lastInterpreted**, **geometry**, **collectionCode**, **institutionCode** and **year**.
 
-```{r,eval=FALSE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
+```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
 # Read the list of species to download. It can be the output file of the 
 # invasiveSp function.
 
-input <- readAndWrite(action = 'read', frmt   = 'readRDS' ,
-                      path   = 'invasiveSP/Mammalia/non.foreign/',
-                      name   = 'input.rgbif.non.foreign')
-
+input <- readAndWrite(action = 'read', frmt   = 'readRDS' ,	
+                      path   = 'invasiveSp/Mammalia/non.foreign/',	
+                      name   = 'input.rgbif.non.foreign')	
 # Download the species
 
-gbifDownSp(sp.name          = input,
-           taxon.key        = NULL ,
-           genus            = NULL,
-           epithet          = NULL,
-           starts.in        = 1 ,
-           wrt.frmt         = 'saveRDS',
-           save.download.in = 'gbifDownSp/Mammalia/' ,
-           limit            = 200000)
+gbifDownSp(sp.name          = input,	
+           taxon.key        = NULL ,	
+           genus            = NULL,	
+           epithet          = NULL,	
+           starts.in        = 1 ,	
+           wrt.frmt         = 'saveRDS',	
+           save.download.in = 'gbifDownSp/Mammalia/' ,	
+           limit            = 200000)	
 ```
 
 The occurrences reported by GBIF could be georeferenced or not. We can separate georeferenced from non georeferenced  using the _**splitGeoref**_ function.
@@ -508,20 +520,20 @@ The argument in the **data** parameter is a list of files to read, all files mus
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
 # create the list of files
 
-out.gbifDownSp <- list.files('gbifDownSp/Mammalia/')
-
-SplitGeoref <- splitGeoref(data             = out.gbifDownSp,
-                           rd.frmt          = 'readRDS',
-                           path             = 'gbifDownSp/Mammalia/' ,
-                           min.occ          = 3,
-                           round.coord      = 4,
-                           wrt.frmt         = 'saveRDS',
-                           save.min.occ.in  = 'splitGeoref/Mammalia/min.Occurren/',
-                           save.georef.in   = 'splitGeoref/Mammalia/georref/',
-                           save.ungeoref.in = 'splitGeoref/Mammalia/not.georref/')
-
-readAndWrite(action = 'write', frmt   = 'saveTXT', path   = 'tables/',
-             name   = 'splitGeoref_example.txt', object = SplitGeoref)
+out.gbifDownSp <- list.files('gbifDownSp/Mammalia/')	
+	
+SplitGeoref <- splitGeoref(data             = out.gbifDownSp,	
+                           rd.frmt          = 'readRDS',	
+                           path             = 'gbifDownSp/Mammalia/' ,	
+                           min.occ          = 3,	
+                           round.coord      = 4,	
+                           wrt.frmt         = 'saveRDS',	
+                           save.min.occ.in  = 'splitGeoref/Mammalia/min.Occurren/',	
+                           save.georef.in   = 'splitGeoref/Mammalia/georref/',	
+                           save.ungeoref.in = 'splitGeoref/Mammalia/not.georref/')	
+	
+readAndWrite(action = 'write', frmt   = 'saveTXT', path   = 'tables/',	
+             name   = 'splitGeoref_example.txt', object = SplitGeoref)	
 ```
 
 ```{r, eval=TRUE, echo=TRUE}
@@ -534,14 +546,14 @@ The coordinates could be in different formats, but the unique valid format in th
 
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-out.splitGeref <- list.files('splitGeoref/Mammalia/georref/')
-
-checkCoord(data          = out.splitGeref,
-           path          = 'splitGeoref/Mammalia/georref/',
-           rd.frmt       = 'readRDS',
-           wrt.frmt      = 'saveRDS',
-           save.right.in = 'checkCoord/Mammalia/right.coord/' ,
-           save.wrong.in = 'checkCoord/Mammalia/wrogn.coord/')
+out.splitGeref <- list.files('splitGeoref/Mammalia/georref/')	
+	
+checkCoord(data          = out.splitGeref,	
+           path          = 'splitGeoref/Mammalia/georref/',	
+           rd.frmt       = 'readRDS',	
+           wrt.frmt      = 'saveRDS',	
+           save.right.in = 'checkCoord/Mammalia/right.coord/' ,	
+           save.wrong.in = 'checkCoord/Mammalia/wrogn.coord/')	
 
 ```
 
@@ -569,18 +581,18 @@ for (i in 1:length(georefFromGBIF)) {
 Sometimes the coordinates might have problems as wrong sign value, and as result we have coordinates of land species with occurrences at sea.
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-out.checkCoord <- list.files('checkCoord/Mammalia/right.coord/')
-
-pointsAtSea <- pointsAtSea(data            = out.checkCoord ,
-                           path            = 'checkCoord/Mammalia/right.coord/',
-                           rd.frmt         = 'readRDS',
-                           wrt.frmt        = 'saveRDS',
-                           save.OnEarth.in = 'pointAtSea/Mammalia/on.earth/',
-                           save.AtSea.in   = 'pointAtSea/Mammalia/at.sea/')
-
-
-readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',
-             name = 'pointsAtSea_example.txt', object = pointsAtSea)
+out.checkCoord <- list.files('checkCoord/Mammalia/right.coord/')	
+	
+pointsAtSea <- pointsAtSea(data            = out.checkCoord ,	
+                           path            = 'checkCoord/Mammalia/right.coord/',	
+                           rd.frmt         = 'readRDS',	
+                           wrt.frmt        = 'saveRDS',	
+                           save.OnEarth.in = 'pointAtSea/Mammalia/on.earth/',	
+                           save.AtSea.in   = 'pointAtSea/Mammalia/at.sea/')	
+	
+	
+readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',	
+             name = 'pointsAtSea_example.txt', object = pointsAtSea)	
 ```
 
 ```{r,eval=TRUE,echo=FALSE}
@@ -629,43 +641,43 @@ If the argument in the **execute** parameter is 'FALSE', the process will not cl
 For example, when the execute argument is 'FALSE', we will find the table of information in the current working directory (getwd ()), this file will be called 'Classify.sp'.
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-out.OnEarth <- list.files('pointAtSea/Mammalia/on.earth/')
+out.OnEarth <- list.files('pointAtSea/Mammalia/on.earth/')	
+	
+data('America')	
 
-data('America')
-
-americaFilter <- spOutPoly(data            = out.OnEarth,
-                           rd.frmt         = 'readRDS' ,
-                           path            = 'pointAtSea/Mammalia/on.earth/',
-                           shp.poly        = America,
-                           max.per.out     = 10,
-                           max.occ.out     = 3,
-                           execute         = FALSE,
-                           B1              = TRUE,
-                           B2              = TRUE,
-                           wrt.frmt        = 'saveRDS',
-                           save.inside.in  = NULL ,
-                           save.outside.in = NULL)
+americaFilter <- spOutPoly(data            = out.OnEarth,	
+                           rd.frmt         = 'readRDS' ,	
+                           path            = 'pointAtSea/Mammalia/on.earth/',	
+                           shp.poly        = America,	
+                           max.per.out     = 10,	
+                           max.occ.out     = 3,	
+                           execute         = FALSE,	
+                           B1              = TRUE,	
+                           B2              = TRUE,	
+                           wrt.frmt        = 'saveRDS',	
+                           save.inside.in  = NULL ,	
+                           save.outside.in = NULL)	
 ```
 
 When we want to run the process we use execute = 'TRUE', then the table of information will be a vector data frame class assigned in 'americaFilter'. 
 This vector will be saved using readAndWrite as in previous functions.
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-americaFilter <- spOutPoly(data            = out.OnEarth,
-                           rd.frmt         = 'readRDS' ,
-                           path            = 'pointAtSea/Mammalia/on.earth/',
-                           shp.poly        = America,
-                           max.per.out     = 10,
-                           max.occ.out     = 3,
-                           execute         = TRUE,
-                           B1              = TRUE,
-                           B2              = TRUE,
-                           wrt.frmt        = 'saveRDS',
-                           save.inside.in  = 'spOutPoly_America/Mammalia/inside/' ,
-                           save.outside.in = 'spOutPoly_America/Mammalia/outside/')
-
-readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',
-             name   = 'americaFilterExc_example.txt', object = americaFilter)
+americaFilter <- spOutPoly(data            = out.OnEarth,	
+                           rd.frmt         = 'readRDS' ,	
+                           path            = 'pointAtSea/Mammalia/on.earth/',	
+                           shp.poly        = America,	
+                           max.per.out     = 10,	
+                           max.occ.out     = 3,	
+                           execute         = TRUE,	
+                           B1              = TRUE,	
+                           B2              = TRUE,	
+                           wrt.frmt        = 'saveRDS',	
+                           save.inside.in  = 'spOutPoly_America/Mammalia/inside/' ,	
+                           save.outside.in = 'spOutPoly_America/Mammalia/outside/')	
+	
+readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',	
+             name   = 'americaFilterExc_example.txt', object = americaFilter)	
 ```
 
 ```{r,eval=TRUE,echo=TRUE}
@@ -713,24 +725,25 @@ for (i in 1:length(DistriAmerica)) {
 The second step is performed as a relaxed process, because the parameter values are more relaxed and the condition B1 and B2 is FALSE (B1F, B2F). See: R-Alarcon and Miranda-Esquivel (submitted).
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-out.americFilter <- list.files('spOutPoly_America/Mammalia/inside/')
+out.americFilter <- list.files('spOutPoly_America/Mammalia/inside/')	
+	
+data('ChcBiog')	
 
-data('ChcBiog')
-chocoFilter <- spOutPoly(data            = out.americFilter,
-                         rd.frmt         = 'readRDS' ,
-                         path            = 'spOutPoly_America/Mammalia/inside/',
-                         shp.poly        = ChcBiog,
-                         max.per.out     = 50,
-                         max.occ.out     = 10,
-                         execute         = TRUE,
-                         B1              = FALSE,
-                         B2              = FALSE,
-                         wrt.frmt        = 'saveRDS',
-                         save.inside.in  = 'spOutPoly_Choco/Mammalia/inside/' ,
-                         save.outside.in = 'spOutPoly_Choco/Mammalia/outside/')
-
-readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',
-             name = 'ChocoFilterExc_example.txt', object = chocoFilter)
+chocoFilter <- spOutPoly(data            = out.americFilter,	
+                         rd.frmt         = 'readRDS' ,	
+                         path            = 'spOutPoly_America/Mammalia/inside/',	
+                         shp.poly        = ChcBiog,	
+                         max.per.out     = 50,	
+                         max.occ.out     = 10,	
+                         execute         = TRUE,	
+                         B1              = FALSE,	
+                         B2              = FALSE,	
+                         wrt.frmt        = 'saveRDS',	
+                         save.inside.in  = 'spOutPoly_Choco/Mammalia/inside/' ,	
+                         save.outside.in = 'spOutPoly_Choco/Mammalia/outside/')	
+	
+readAndWrite(action = 'write', frmt = 'saveTXT', path = 'tables/',	
+             name = 'ChocoFilterExc_example.txt', object = chocoFilter)	
 ```
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -779,17 +792,17 @@ NOTE: Until here, we could use all the processes in a single run, maybe as an Rs
 
 
 ```{r, eval=TRUE}
-out.choco <- list.files('spOutPoly_Choco/Mammalia/inside/')
-
-delPointsOrSp <- delPointsOrSp(data         = out.choco,
-                               rd.frmt      = 'readRDS' ,
-                               path         = 'spOutPoly_Choco/Mammalia/inside/',
-                               west         = -120,
-                               east         = -65,
-                               south        = -25,
-                               north        = 25,
-                               plot.distrib = TRUE,
-                               wrt.frmt     = 'saveRDS',
+out.choco <- list.files('spOutPoly_Choco/Mammalia/inside/')	
+	
+delPointsOrSp <- delPointsOrSp(data         = out.choco,	
+                               rd.frmt      = 'readRDS' ,	
+                               path         = 'spOutPoly_Choco/Mammalia/inside/',	
+                               west         = -120,	
+                               east         = -65,	
+                               south        = -25,	
+                               north        = 25,	
+                               plot.distrib = TRUE,	
+                               wrt.frmt     = 'saveRDS',	
                                save.file    = 'delPointOrSp/Mammalia/') 
 ```
 
@@ -879,18 +892,18 @@ abline(v = -65)
 After all the filters used, some species could have very few records. Thus, to define a polygon as an area of distribution we need at least 3 occurrences, then we will get species with a minimal number of occurrences using the _**usefulSp**_ function.
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-out.deltpoints <- list.files('delPointOrSp/Mammalia/')
-
-usefulSp <- usefulSp(data = out.deltpoints,
-                     path = 'delPointOrSp/Mammalia/',
-                     cut.off = 3,
-                     rd.frmt = 'readRDS',
-                     wrt.frmt = 'saveRDS',
-                     save.useful.in = 'usefulSp/Mammalia/useful/',
-                     save.useless.in = 'usefulSp/Mammalia/useless/')
-
-readAndWrite(action = 'write', frmt   = 'saveTXT', path   = 'tables/',
-             name   = 'usefulSP_example.txt', object = usefulSp)
+out.deltpoints <- list.files('delPointOrSp/Mammalia/')	
+	
+usefulSp <- usefulSp(data = out.deltpoints,	
+                     path = 'delPointOrSp/Mammalia/',	
+                     cut.off = 3,	
+                     rd.frmt = 'readRDS',	
+                     wrt.frmt = 'saveRDS',	
+                     save.useful.in = 'usefulSp/Mammalia/useful/',	
+                     save.useless.in = 'usefulSp/Mammalia/useless/')	
+	
+readAndWrite(action = 'write', frmt   = 'saveTXT', path   = 'tables/',	
+             name   = 'usefulSP_example.txt', object = usefulSp)	
 ```
 
 ```{r,eval=TRUE,echo=TRUE}
@@ -900,18 +913,18 @@ knitr::kable(head(usefulSp,4L), format = 'markdown')
 Now we prepare a single file with the data cleaned, and 'That's all folks'
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-out.useful <- list.files('usefulSp/Mammalia/useful/' )
-
-StackSp <- stackSp(data            = out.useful,
-                   rd.frmt         = 'readRDS' ,
-                   path            = 'usefulSp/Mammalia/useful/',
-                   save.name       = 'stackSp_example' ,
-                   save.staking.in = 'stackingSp/',
-                   wrt.frmt        =  'saveRDS')
+out.useful <- list.files('usefulSp/Mammalia/useful/' )	
+	
+stacksp <- stackSp(data            = out.useful,	
+                   rd.frmt         = 'readRDS' ,	
+                   path            = 'usefulSp/Mammalia/useful/',	
+                   save.name       = 'stackSp_example' ,	
+                   save.staking.in = 'stackingSp/',	
+                   wrt.frmt        =  'saveRDS')	
 ```
 
 ```{r,eval=TRUE,echo=TRUE}
-knitr::kable(StackSp,  format = 'markdown')
+knitr::kable(stacksp,  format = 'markdown')
 ```
 
 We might want some information about the spatial distribution as a whole or by species. These metrics can be the mean propinquity, median propinquity, mode, skewness, etc.
@@ -920,18 +933,18 @@ For example, as a whole:
 
 ```{r,eval=TRUE,echo=TRUE}
 # Remember to read the final file to perform the meanPropinquity process
-out.stackSp <- readAndWrite(action = 'read', frmt = 'readRDS' ,
+out.stackSp <- readAndWrite(action = 'read', frmt = 'readRDS' ,	
                       path = 'stackingSp/', name = 'stackSp_example')
 ```
 
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-PropinquityWhole <- meanPropinquity(coord.table = out.stackSp,
-                                    calculatedBy = 'whole',
-                                    wrt.frmt    = 'saveTXT' ,
-                                    save.info.in = 'meanPropinquity/Mammalia/' ,
-                                    plot.dist    =  TRUE,
-                                    plot.onMap   = TRUE,
+PropinquityWhole <- meanPropinquity(coord.table = out.stackSp,	
+                                    calculatedBy = 'whole',	
+                                    wrt.frmt    = 'saveTXT' ,	
+                                    save.info.in = 'meanPropinquity/Mammalia/' ,	
+                                    plot.dist    =  TRUE,	
+                                    plot.onMap   = TRUE,	
                                     save.plot.in = 'meanPropinquity/Mammalia/')
 
 ```
@@ -945,13 +958,13 @@ knitr::kable(head(PropinquityWhole),  format = 'markdown')
 or by species:
 
 ```{r,eval=TRUE, results='hide',comment=FALSE,message=FALSE, warning=FALSE}
-PropinquitySp <- meanPropinquity(coord.table    = out.stackSp ,
-                                 calculatedBy = 'species',
-                                 wrt.frmt     = 'saveTXT' ,
-                                 save.info.in = 'meanPropinquity/Mammalia/' ,
-                                 plot.dist    =  TRUE,
-                                 plot.onMap   = TRUE,
-                                 save.plot.in = 'meanPropinquity/Mammalia/')
+PropinquitySp <- meanPropinquity(coord.table    = out.stackSp ,	
+                                 calculatedBy = 'species',	
+                                 wrt.frmt     = 'saveTXT' ,	
+                                 save.info.in = 'meanPropinquity/Mammalia/' ,	
+                                 plot.dist    =  TRUE,	
+                                 plot.onMap   = TRUE,	
+                                 save.plot.in = 'meanPropinquity/Mammalia/')	
 
 ```
 

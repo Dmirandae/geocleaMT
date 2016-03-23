@@ -25,7 +25,7 @@ Otherwise, it could return all occurrences read into database.}
 \item{save.name}{Vector of characters. Name of the output file.}
 
 \item{wrt.frmt}{Vector of characters. Format to save output
-file. By default it will be written  as a  R object using}
+file. By default it will be written  as a  R object using the}
 
 \item{save.in}{Vector od characters. Path to the output file.}
 }

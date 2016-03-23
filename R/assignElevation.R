@@ -11,22 +11,22 @@
 #'@param path.data Vector of characters. Path to the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read as a R object using 
-#' \code{'readRDS'} argument, but it can be read as a plain text file, using 
+#'By default it will be read as a R object using the
+#' \code{'readRDS'} argument, but it can be read as a plain text file, using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param elevations.db Data.Frame object. The elevations database, 
-#'tree columns (decimalLatitude, decimalLongitude, elevation)
+#'tree columns (decimalLatitude, decimalLongitude, elevation).
 #'
 #'@param round.coord Numeric vector. Decimal to round the coordinate to  
 #'assign the elevation. This value must be same of the coordinate 
 #'resolution of database assigned as argument on \code{elevation.db} parameter. 
 #'Example: the resolution of the coordinates in the databases assigned on 
-#'elevation.db is one decimal, then \code{round.coord} must be equal to 1 (round.coord=1).
+#'\code{elevation.db} is one decimal, then \code{round.coord} must be equal to 1 (round.coord=1).
 #'
 #'@param  wrt.frmt Vector of characters. Format to save output
-#'file. By default it will be written  as a  R object using 
-#' \code{'saveRDS'} argument, but it can be saved as plain text using 
+#'file. By default it will be written  as a  R object using the
+#' \code{'saveRDS'} argument, but it can be saved as plain text using the
 #' \code{'saveTXT'} argument. See details.
 #'
 #'@param save.assigned.in Vector of characters. Path to  
@@ -78,10 +78,9 @@ assignElevation <- function(data               = NULL,
                        save.unassigned.in = NULL){
   #leer tabla
   initials <- readAndWrite(action = 'read', frmt = rd.frmt,
-                           path = path.data, 
-                           name = data)
+                           path = path.data, name = data)
   if (!any(colnames(initials) == 'elevation')){
-    stop('\'data\' table must have a \'elevation\' column')
+    stop('\'data\' table must to have a \'elevation\' column')
   }
   
   # insertar NA por coersion si hay factores
@@ -96,7 +95,7 @@ assignElevation <- function(data               = NULL,
   #saque coordenadas no duplicadas desde la tabla sin elevaciones
   noDuplic<-unassign.Initial[!duplicated(unassign.Initial[,c('decimalLongitude','decimalLatitude')]) ,]
   
-  cat(paste('You have',nrow(noDuplic),'coordinates not duplicated to be assigned \n',sep = ' '))
+  cat(paste('There are',nrow(noDuplic),'coordinates not duplicated to be assigned \n',sep = ' '))
   #Asegure la clase de las variables
   elevations.db$decimalLatitude <- as.numeric(as.character(elevations.db$decimalLatitude))
   elevations.db$decimalLongitude <- as.numeric(as.character(elevations.db$decimalLongitude))
@@ -153,8 +152,8 @@ assignElevation <- function(data               = NULL,
       }
     #Tabla de informacion
   tab.info<- as.data.frame(matrix(data = NA,nrow = 1,ncol = 3 ))
-  colnames(tab.info) <- c('Occurrences','Elev.Assigned','Elev.Unassigned')
-  tab.info$Occurrences <- nrow(initials)
+  colnames(tab.info) <- c('Occ','Elev.Assigned','Elev.Unassigned')
+  tab.info$Occ <- nrow(initials)
   # Escriba las elevaciones no asignadas
   final.Unassigned<-subset(unassign.Initial, is.na(unassign.Initial$elevation) | 
                              unassign.Initial$elevation == 'unassign.Initial')
@@ -163,7 +162,7 @@ assignElevation <- function(data               = NULL,
                  path = save.unassigned.in, name = 'alt.unassigned', 
                  object = final.Unassigned)
     tab.info$Elev.Unassigned<- nrow(final.Unassigned)
-    message('You have coordinates that were not assigned. See: The \'alt.unassigned\' file')
+    message('There are coordinates without altitudes. See: The \'alt.unassigned\' file')
   }else{
     tab.info$Elev.Unassigned <- 0
   }

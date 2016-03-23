@@ -13,8 +13,8 @@ checkCoord(data = NULL, path = NULL, rd.frmt = "readRDS",
 \item{path}{Vector of characters. Path to the input file.}
 
 \item{rd.frmt}{Vector of characters. The file format to read.
-By default it will be read  as a  R object using
-\code{'readRDS'} argument, but it can be read as plain text using
+By default it will be read  as a  R object using the
+\code{'readRDS'} argument, but it can be read as plain text using the
 \code{'readTXT'} argument. See details.}
 
 \item{wrt.frmt}{Vector of characters. Format to save output

@@ -7,7 +7,7 @@
 coordToISO(coordinates.tab = NULL, iso = 2)
 }
 \arguments{
-\item{coordinates.tab}{Data.Frame class. A data frame with at least two columns
+\item{coordinates.tab}{Data Frame class. A data frame with at least two columns
 called \code{decimalLatitude} and \code{'decimalLongitude'}.}
 
 \item{iso}{numeric (2 or 3). To define the code whether ISO-2 (iso=2, default value) or ISO-3 (iso=3).}
@@ -21,7 +21,7 @@ corresponding International Organization for Standardization (ISO 3166-1 alpha-2
 }
 \details{
 If the coordinate is outside the continent, this can not be assigned and
-will be assigned as NaN.
+will be assigned as NaN. If you want to see the oficial ISO codes, you could use the data(ISO2) or data(ISO3) comands.
 }
 \note{
 See:

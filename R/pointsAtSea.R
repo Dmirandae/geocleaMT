@@ -8,8 +8,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -57,15 +57,15 @@ pointsAtSea <- function(data            = NULL,
                         save.AtSea.in   = NULL) {
   
   tab.info <- as.data.frame(matrix(data = NA, nrow = length(data), ncol = 4))
-  colnames(tab.info) <- c('Species', 'Total.occurrences', 'On.earth', 'At.sea')
+  colnames(tab.info) <- c('Sp', 'Total.Occ', 'On.arth', 'At.sea')
   data(wrld_simpl)
   for (i in 1:length(data)) {
     sp <- readAndWrite(action = 'read', frmt = rd.frmt,
                          path = path, name = data[i])
-    tab.info$Species[i] <- data[i]
+    tab.info$Sp[i] <- data[i]
     coord.tab <- as.data.frame(sp[which(!duplicated(sp[, c('decimalLatitude',
                                            'decimalLongitude', 'species')])), ])
-    tab.info$Total.occurrences[i] <- nrow(coord.tab)
+    tab.info$Total.Occ[i] <- nrow(coord.tab)
     coordinates(coord.tab) <- coord.tab[, c('decimalLongitude', 'decimalLatitude')]
     proj4string(coord.tab) <- proj4string(wrld_simpl)
     wrld_simpl <- as(wrld_simpl, 'SpatialPolygons')

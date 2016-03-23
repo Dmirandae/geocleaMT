@@ -5,10 +5,12 @@
 #'
 #'@param data Vector of characters. Name of the input file.
 #' 
-#'@param rd.frmt  Character. Input file format, by default it uses a .RDS format. 
-#'See details.
+#'@param rd.frmt  Vector of characters. The file format to read. 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
+#' \code{'readTXT'} argument. See details.
 #'
-#'@param path The path for the file or files.
+#'@param path Vector of characters. Path to the input file.
 #'
 #'@param cut.off Numeric. Minimal (absolute) number of occurrences for a given 
 #'species, the default value is 3, as the minimal number of points to draw a polygon.
@@ -50,12 +52,12 @@ usefulSp <- function(data            = NULL,
                      save.useful.in  = NULL,
                      save.useless.in = NULL){
   tab.info <- as.data.frame(matrix(NA, length(data), 3))
-  colnames(tab.info) <- c('Species', 'Total.occurrences', 'State')
+  colnames(tab.info) <- c('Sp', 'Total.Occ', 'State')
   for (i in 1:length(data)){
     sp <- readAndWrite(action = 'read',frmt = rd.frmt ,
                          path = path,name = data[i])
-    tab.info$Species[i] <- data[i]
-    tab.info$Total.occurrences[i] <- nrow(sp)
+    tab.info$Sp[i] <- data[i]
+    tab.info$Total.Occ[i] <- nrow(sp)
       if (nrow(sp) >= cut.off) {
         readAndWrite(action = 'write', frmt = wrt.frmt ,
                        path = save.useful.in, name = data[i], object = sp)

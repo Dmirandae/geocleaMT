@@ -8,8 +8,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -101,11 +101,13 @@ elevFromGg <- function(data     = NULL,
      }else{data <- cbind(data, 'elevation' = NA, 'resolution' = NA)
     }
   }
- 
+  Tab.info<-as.data.frame(matrix(NA, 1, 4))
+  colnames(Tab.info) <- c('Total.Occ','Unique.Occ','Occ.Assigned','Occ.Unassigned')
+  Tab.info$Total.Occ <- nrow(data)
   #! sauqe solo los unicos y prgunte los unicos
   
   data.uni <-data[!duplicated(data[,c('decimalLatitude','decimalLongitude')]),]
-  
+  Tab.info$Unique.Occ <- nrow(data.uni)
   #! haga una secuencia que permita que el sistema duerma por un segundo para 
   #! no congestionar el servidor
   seq.tem <- seq(1, nrow(data.uni), 10)
@@ -132,7 +134,7 @@ elevFromGg <- function(data     = NULL,
         }
       Call.API <- fromJSON(API.google)
       if (is.null(Call.API)){
-        message(cat(' The server does not respond, please check its coordinate and try later \n'))
+        message(cat(' The server does not respond, please check your coordinate and/or try later \n'))
       } else {
 		  #! Asigne altura a cada coordenada
         elevation <- Call.API$results[[1]]$elevation
@@ -159,16 +161,18 @@ elevFromGg <- function(data     = NULL,
                      path   = save.unassigned.in,
                      name   = paste(save.name, 'unassigned', sep = '-'),
                      object = unassigned)
-      message(cat(paste('You have coordinates that do not assigned. 
-                      Please, check this coordinates in the ', 
+      message(cat(paste('You have coordinates that are not assigned. 
+                      Please, check these coordinates in the ', 
                       paste('\'', save.name, 'unassigned', '\'', sep = '')
                       , 'file','\n',sep = ' ')))
     }
     #! guarde las alturas asignadas
     if (length(na.altitude)==0){
+    Tab.info$Occ.Unassigned <- 0
       assigned <- data
     }else{
       assigned <- data[-na.altitude, ]
+       Tab.info$Occ.Unassigned <- length(na.altitudes)
     }
     
     readAndWrite(action = 'write', frmt = wrt.frmt, 
@@ -176,7 +180,7 @@ elevFromGg <- function(data     = NULL,
                    name   = save.name,
                    object = assigned)
     
-    
-    return(assigned)
+    Tab.info$Occ.Assigned <- nrow(assigned)
+    return(Tab.info)
   
 }

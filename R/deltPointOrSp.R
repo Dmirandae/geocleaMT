@@ -9,8 +9,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -72,15 +72,15 @@ delPointsOrSp <- function(data         = NULL,
                           save.file    = NULL){
 
   tab.info <- as.data.frame(matrix(NA,length(data),5))
-  colnames(tab.info) <- c('Group','Init.Sp','Init.Occurrences','Fin.Sp',
-                        'Fin.Occurrences')
+  colnames(tab.info) <- c('Sp','Initial.Sp','Initial.Occ','Final.Sp',
+                        'Final.Occ')
   for (i in 1:length(data)) {
    
     sp.table <- readAndWrite(action = 'read', frmt = rd.frmt ,
                                path = path, name = data[i])
-    tab.info$Group[i] <- data[i]
-    tab.info$Init.Sp[i] <- length(unique(sp.table$species))
-    tab.info$Init.Occurrences[i] <- nrow(sp.table)
+    tab.info$Sp[i] <- data[i]
+    tab.info$Initial.Sp[i] <- length(unique(sp.table$species))
+    tab.info$Initial.Occ[i] <- nrow(sp.table)
     y <- which(as.numeric(sp.table$decimalLongitude) < west | as.numeric(sp.table$decimalLongitude) > east)
     x <- which(as.numeric(sp.table$decimalLatitude) < south | as.numeric(sp.table$decimalLatitude) > north)
     total <- unique(c(y, x))
@@ -92,15 +92,15 @@ delPointsOrSp <- function(data         = NULL,
      plot(wrld_simpl)
      points(x = sp.table$decimalLongitude[-total],
             y = sp.table$decimalLatitude[-total],
-            col = 'black', pch = 20)
+            col = 'blue', pch = 20)
       points(x = sp.table$decimalLongitude[total],
             y = sp.table$decimalLatitude[total],
             col = rainbow(length(names)), pch = 20)
-      legend('topleft', legend = names, title = 'Species', 
-            fill = rainbow(length(names)), cex = 0.56, bty = 'n')
+      #legend('topleft', legend = names, title = 'Species', 
+            #fill = rainbow(length(names)), cex = 0.56, bty = 'n')
     }
       for (sp in 1:length(names)) {
-      
+      message('There are points inside of the range, you can see them in red color')
       print(paste('Check the distribution:', names[sp]))
       input1 <- readline('Delete points? \n (yes: y or not: n)= ')
       if (input1 == 'y' | input1 == 'yes') {
@@ -120,15 +120,15 @@ delPointsOrSp <- function(data         = NULL,
       dev.off()
       }
       } else {
-        message(paste(data[i],': There are no points in the range',sep = ''))
+        print(paste(data[i],': There are no points in the range',sep = ''))
         
       }
     if (!nrow(sp.table) == 0) {
     readAndWrite(action = 'write', frmt = wrt.frmt, object = sp.table,
                    path = save.file, name = data[i])
     }
-    tab.info$Fin.Sp[i] <- length(unique(sp.table$species))
-    tab.info$Fin.Occurrences[i] <- nrow(sp.table)
+    tab.info$Final.Sp[i] <- length(unique(sp.table$species))
+    tab.info$Final.Occ[i] <- nrow(sp.table)
   }
   
   return(tab.info)

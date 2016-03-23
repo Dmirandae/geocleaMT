@@ -27,8 +27,8 @@
 #'
 #' Separate species with a minimum number of occurrences [\code{\link{usefulSp}}]. 
 #' 
-#' Verify that coordinates are into the range for latitude (-90,90) and 
-#' longitude (-180,180) [\code{\link{checkCoord}}].
+#' Verify that coordinates are into the range for latitude (-90, 90) and 
+#' longitude (-180, 180) [\code{\link{checkCoord}}].
 #' 
 #' Eliminate specific records [\code{\link{delPointsOrSp}}].
 #'

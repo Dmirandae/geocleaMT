@@ -9,8 +9,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read. 
-#'By default it will be read  as a  R object using 
-#' \code{'readRDS'} argument, but it can be read as plain text using 
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -95,7 +95,7 @@ spOutPoly <- function(data            = NULL,
                       save.outside.in = NULL) { 
   
   tab.info <- as.data.frame(matrix(NA, length(data), 8))
-  colnames(tab.info) <- c('Sp', 'No.occurrences', 'No.inside', 'No.outside',
+  colnames(tab.info) <- c('Sp', 'Occ', 'No.Inside', 'No.outside',
                           'Percent.out', 'Status.sp', 'Delete','CondicionApplied')
   if (execute == F) {
 
@@ -104,7 +104,7 @@ spOutPoly <- function(data            = NULL,
     sp <- as.data.frame(readAndWrite(action = 'read', frmt = rd.frmt,
                                      path = path, name = data[i]))
     tab.info$Sp[i] <- data[i]
-    tab.info$No.occurrences[i] <- nrow(sp)
+    tab.info$Occ[i] <- nrow(sp)
     # Defina  cuales son las coordenadas en la matriz.
     coordinates(sp) <- sp[,c('decimalLongitude','decimalLatitude')]
     # unifique el Datum.
@@ -112,74 +112,74 @@ spOutPoly <- function(data            = NULL,
     # estraiga los puntos dentro del poligono de trabjo.
     outside <- is.na(over(sp,(as(shp.poly, 'SpatialPolygons'))))
     if (any(outside) == T) {
-      tab.info$No.outside[i] <- nrow(sp[outside, ])
-      tab.info$Percent.out[i] <- as.character(round(((nrow(sp[outside, ])*100)
+      tab.info$No.Outside[i] <- nrow(sp[outside, ])
+      tab.info$Percent.Out[i] <- as.character(round(((nrow(sp[outside, ])*100)
                                                          /nrow(sp)), 2))
-      if (as.numeric(as.character(tab.info$No.outside[i])) ==
-          as.numeric(as.character(tab.info$No.occurrences[i]))) {
-        tab.info$No.outside[i] <- nrow(sp[outside, ])
-        tab.info$No.inside[i] <- 0
-        tab.info$Status.sp[i] <- 'outside'
+      if (as.numeric(as.character(tab.info$No.Outside[i])) ==
+          as.numeric(as.character(tab.info$Occ[i]))) {
+        tab.info$No.Outside[i] <- nrow(sp[outside, ])
+        tab.info$No.Inside[i] <- 0
+        tab.info$Status.Sp[i] <- 'outside'
         tab.info$Delete[i] <- 'sp'
-        tab.info$CondicionApplied[i] <- 'C'
+        tab.info$Condicion[i] <- 'C'
       }else{
-        if (as.numeric(tab.info$Percent.out[i]) > max.per.out) {
-          if (as.numeric(tab.info$No.outside[i]) <= max.occ.out) {
+        if (as.numeric(tab.info$Percent.Out[i]) > max.per.out) {
+          if (as.numeric(tab.info$No.Outside[i]) <= max.occ.out) {
             if (B2 == T) {
               sp <- as.data.frame(sp[!outside, ])
               sp <- sp[, -c(length(sp) - 1, length(sp))]
-              tab.info$No.outside[i] <- nrow(sp[outside, ])
-              tab.info$No.inside[i] <- nrow(sp[!outside, ])
-              tab.info$Status.sp[i] <- 'inside'
+              tab.info$No.Outside[i] <- nrow(sp[outside, ])
+              tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+              tab.info$Status.Sp[i] <- 'inside'
               tab.info$Delete[i] <- 'points'
-              tab.info$CondicionApplied[i] <- 'B2T'
+              tab.info$Condicion[i] <- 'B2T'
             } else {
               sp <- as.data.frame(sp)
               sp <- sp[,-c(length(sp) - 1,length(sp))]
-              tab.info$No.outside[i] <- nrow(sp[outside, ])
-              tab.info$No.inside[i] <- nrow(sp[!outside, ])
-              tab.info$Status.sp[i] <- 'inside'
+              tab.info$No.Outside[i] <- nrow(sp[outside, ])
+              tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+              tab.info$Status.Sp[i] <- 'inside'
               tab.info$Delete[i] <- 'None'
-              tab.info$CondicionApplied[i] <- 'B2F'
+              tab.info$Condicion[i] <- 'B2F'
             }
           } else {
             sp <- as.data.frame(sp)
             sp <- sp[,-c(length(sp) - 1,length(sp))]
-            tab.info$No.outside[i] <- nrow(sp[outside, ])
-            tab.info$No.inside[i] <- nrow(sp[!outside, ])
-            tab.info$Status.sp[i] <- 'outside'
+            tab.info$No.Outside[i] <- nrow(sp[outside, ])
+            tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+            tab.info$Status.Sp[i] <- 'outside'
             tab.info$Delete[i] <- 'sp'
-            tab.info$CondicionApplied[i] <- 'B3'
+            tab.info$Condicion[i] <- 'B3'
           }
         } else {
           if (B1 == T ) {
             sp <- as.data.frame(sp[!outside, ])
             sp <- sp[, -c(length(sp) - 1, length(sp))]
-            tab.info$No.outside[i] <- nrow(sp[outside, ])
-            tab.info$No.inside[i] <- nrow(sp[!outside, ])
-            tab.info$Status.sp[i] <- 'inside'
+            tab.info$No.Outside[i] <- nrow(sp[outside, ])
+            tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+            tab.info$Status.Sp[i] <- 'inside'
             tab.info$Delete[i] <- 'points'
-            tab.info$CondicionApplied[i] <- 'B1T'
+            tab.info$Condicion[i] <- 'B1T'
           } else {
             sp <- as.data.frame(sp)
             sp <- sp[,-c(length(sp) - 1,length(sp))]
-            tab.info$No.outside[i] <- nrow(sp[outside, ])
-            tab.info$No.inside[i] <- nrow(sp[!outside, ])
-            tab.info$Status.sp[i] <- 'inside'
+            tab.info$No.Outside[i] <- nrow(sp[outside, ])
+            tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+            tab.info$Status.Sp[i] <- 'inside'
             tab.info$Delete[i] <- 'None'
-            tab.info$CondicionApplied[i] <- 'B1F'
+            tab.info$Condicion[i] <- 'B1F'
           }
         }
       }
     } else {
       sp <- as.data.frame(sp)
       sp <- sp[,-c(length(sp) - 1,length(sp))]
-      tab.info$No.outside[i] <- nrow(sp[outside, ])
-      tab.info$No.inside[i] <- nrow(sp[!outside, ])
-      tab.info$Percent.out[i] <- 0
-      tab.info$Status.sp[i] <- 'inside'
+      tab.info$No.Outside[i] <- nrow(sp[outside, ])
+      tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+      tab.info$Percent.Out[i] <- 0
+      tab.info$Status.Sp[i] <- 'inside'
       tab.info$Delete[i] <- 'None'
-      tab.info$CondicionApplied[i] <- 'A'
+      tab.info$Condicion[i] <- 'A'
     }
     print(paste('Species',i,':',data[i],sep = ''))
     }
@@ -193,7 +193,7 @@ spOutPoly <- function(data            = NULL,
     sp <- as.data.frame(readAndWrite(action = 'read', frmt = rd.frmt,
                                        path = path, name = data[i]))
     tab.info$Sp[i] <- data[i]
-    tab.info$No.occurrences[i] <- nrow(sp)
+    tab.info$Occ[i] <- nrow(sp)
     #! Defina  cuales son las coordenadas en la matriz.
     coordinates(sp) <- sp[,c('decimalLongitude','decimalLatitude')]
     #! unifique el Datum.
@@ -201,41 +201,41 @@ spOutPoly <- function(data            = NULL,
     #! extraiga los puntos dentro del poligono de trabjo.
     outside <- is.na(over(sp,(as(shp.poly, 'SpatialPolygons'))))
     if (any(outside) == T) {
-      tab.info$No.outside[i] <- nrow(sp[outside, ])
-      tab.info$Percent.out[i] <- as.character(round(((nrow(sp[outside, ])*100)
+      tab.info$No.Outside[i] <- nrow(sp[outside, ])
+      tab.info$Percent.Out[i] <- as.character(round(((nrow(sp[outside, ])*100)
                                                      /nrow(sp)), 2))
-      if (as.numeric(as.character(tab.info$No.outside[i])) ==
-            as.numeric(as.character(tab.info$No.occurrences[i]))) {
-        tab.info$No.outside[i] <- nrow(sp[outside, ])
-        tab.info$No.inside[i] <- 0
-        tab.info$Status.sp[i] <- 'outside'
+      if (as.numeric(as.character(tab.info$No.Outside[i])) ==
+            as.numeric(as.character(tab.info$Occ[i]))) {
+        tab.info$No.Outside[i] <- nrow(sp[outside, ])
+        tab.info$No.Inside[i] <- 0
+        tab.info$Status.Sp[i] <- 'outside'
         tab.info$Delete[i] <- 'sp'
-        tab.info$CondicionApplied[i] <- 'C'
+        tab.info$Condicion[i] <- 'C'
         }else{
-          if (as.numeric(tab.info$Percent.out[i]) > max.per.out) {
-            if (as.numeric(tab.info$No.outside[i]) <= max.occ.out) {
+          if (as.numeric(tab.info$Percent.Out[i]) > max.per.out) {
+            if (as.numeric(tab.info$No.Outside[i]) <= max.occ.out) {
               if (B2 == T) {
                 sp <- as.data.frame(sp[!outside, ])
                 sp <- sp[, -c(length(sp) - 1, length(sp))]
                readAndWrite(action = 'write', frmt = wrt.frmt,
                             path = save.inside.in, name = data[i],
                             object = sp)
-               tab.info$No.outside[i] <- nrow(sp[outside, ])
-               tab.info$No.inside[i] <- nrow(sp[!outside, ])
-               tab.info$Status.sp[i] <- 'inside'
+               tab.info$No.Outside[i] <- nrow(sp[outside, ])
+               tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+               tab.info$Status.Sp[i] <- 'inside'
                tab.info$Delete[i] <- 'points'
-               tab.info$CondicionApplied[i] <- 'B2T'
+               tab.info$Condicion[i] <- 'B2T'
                } else {
                  sp <-as.data.frame(sp)
                  sp <- sp[,-c(length(sp) - 1,length(sp))]
                  readAndWrite(action = 'write', frmt = wrt.frmt,
                               path = save.inside.in, name = data[i],
                               object = sp)
-                 tab.info$No.outside[i] <- nrow(sp[outside, ])
-                 tab.info$No.inside[i] <- nrow(sp[!outside, ])
-                 tab.info$Status.sp[i] <- 'inside'
+                 tab.info$No.Outside[i] <- nrow(sp[outside, ])
+                 tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+                 tab.info$Status.Sp[i] <- 'inside'
                  tab.info$Delete[i] <- 'None'
-                 tab.info$CondicionApplied[i] <- 'B2F'
+                 tab.info$Condicion[i] <- 'B2F'
                }
               } else {
                 sp <- as.data.frame(sp)
@@ -243,11 +243,11 @@ spOutPoly <- function(data            = NULL,
                 readAndWrite(action = 'write', frmt = wrt.frmt, 
                              path = save.outside.in, name = data[i],
                              object = sp)
-                tab.info$No.outside[i] <- nrow(sp[outside, ])
-                tab.info$No.inside[i] <- nrow(sp[!outside, ])
-                tab.info$Status.sp[i] <- 'outside'
+                tab.info$No.Outside[i] <- nrow(sp[outside, ])
+                tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+                tab.info$Status.Sp[i] <- 'outside'
                 tab.info$Delete[i] <- 'sp'
-                tab.info$CondicionApplied[i] <- 'B3'
+                tab.info$Condicion[i] <- 'B3'
               }
             } else {
               if (B1 == T ) {
@@ -256,22 +256,22 @@ spOutPoly <- function(data            = NULL,
                 readAndWrite(action = 'write', frmt = wrt.frmt,
                              path = save.inside.in, name = data[i],
                              object = sp)
-                tab.info$No.outside[i] <- nrow(sp[outside, ])
-                tab.info$No.inside[i] <- nrow(sp[!outside, ])
-                tab.info$Status.sp[i] <- 'inside'
+                tab.info$No.Outside[i] <- nrow(sp[outside, ])
+                tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+                tab.info$Status.Sp[i] <- 'inside'
                 tab.info$Delete[i] <- 'points'
-                tab.info$CondicionApplied[i] <- 'B1T'
+                tab.info$Condicion[i] <- 'B1T'
                 } else {
                   sp <- as.data.frame(sp)
                   sp <- sp[,-c(length(sp) - 1,length(sp))]
                   readAndWrite(action = 'write', frmt = wrt.frmt,
                                path = save.inside.in, name = data[i],
                                object = sp)
-                  tab.info$No.outside[i] <- nrow(sp[outside, ])
-                  tab.info$No.inside[i] <- nrow(sp[!outside, ])
-                  tab.info$Status.sp[i] <- 'inside'
+                  tab.info$No.Outside[i] <- nrow(sp[outside, ])
+                  tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+                  tab.info$Status.Sp[i] <- 'inside'
                   tab.info$Delete[i] <- 'None'
-                  tab.info$CondicionApplied[i] <- 'B1F'
+                  tab.info$Condicion[i] <- 'B1F'
                 }
             }
         }
@@ -281,12 +281,13 @@ spOutPoly <- function(data            = NULL,
         
         readAndWrite(action = 'write', frmt = wrt.frmt,
                      path = save.inside.in, name = data[i], object = sp)
-        tab.info$No.outside[i] <- nrow(sp[outside, ])
-        tab.info$No.inside[i] <- nrow(sp[!outside, ])
-        tab.info$Percent.out[i] <- 0
-        tab.info$Status.sp[i] <- 'inside'
+        tab.info$No.Outside[i] <- nrow(sp[outside, ])
+        tab.info$No.Outside[i] <- nrow(sp[outside, ])
+        tab.info$No.Inside[i] <- nrow(sp[!outside, ])
+        tab.info$Percent.Out[i] <- 0
+        tab.info$Status.Sp[i] <- 'inside'
         tab.info$Delete[i] <- 'None'
-        tab.info$CondicionApplied[i] <- 'A'
+        tab.info$Condicion[i] <- 'A'
       }
     print(paste('Species',i,':',data[i],sep = ''))
   }

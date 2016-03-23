@@ -35,7 +35,7 @@
 countryToCentroid <- function(country=NULL){
   
   data(wrld_simpl)
-  table <- cbind(country,'centroidLon' = NaN,'centroidLat'= NaN)
+  table <- cbind(country, 'centroidLon' = NaN, 'centroidLat'= NaN)
   for (i in 1:nrow(table)) {
     table$country <- table[i]
     position <- which(wrld_simpl$NAME == paises[i])

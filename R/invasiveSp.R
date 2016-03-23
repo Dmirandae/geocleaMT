@@ -10,8 +10,8 @@
 #'@param data Vector of characters. Name of the input file.
 #'
 #'@param rd.frmt Vector of characters. The file format to read.
-#'By default it will be read  as a  R object using
-#' \code{'readRDS'} argument, but it can be read as plain text using
+#'By default it will be read  as a  R object using the
+#' \code{'readRDS'} argument, but it can be read as plain text using the
 #' \code{'readTXT'} argument. See details.
 #'
 #'@param path Vector of characters. Path to the input file.
@@ -96,8 +96,8 @@ invasiveSp <- function(data                = NULL,
     message('If the process is stopped, you can check the temporal file: \'foreignSp.temp\'')
   }
    tab.info <- as.data.frame(matrix(NA,1,3))
-  colnames(tab.info) <- c('Species', 'ForeignSp', 'NonForeignSp')
-  tab.info$Species <- length(unique(foreign.sp$species))
+  colnames(tab.info) <- c('Sp', 'Foreign.Sp', 'Non.Foreign.Sp')
+  tab.info$Sp <- length(unique(foreign.sp$species))
   foreign.sp.table <- as.data.frame(cbind('genus' = as.character(foreign.sp$genus[which(!duplicated(foreign.sp[,'species']))]),
                  'specificEpithet' = as.character(foreign.sp$specificEpithet[which(!duplicated(foreign.sp[,'species']))])))
 
@@ -144,7 +144,7 @@ invasiveSp <- function(data                = NULL,
       foreign.sp$Foreign[x.which] <- 1
     }
 
-    cat(paste(i,foreign.sp.table$genus[i],foreign.sp.table$specificEpithet[i],'- Status:',foreign.sp$Foreign[x.which][1],sep = ' '))
+    cat(paste(i,foreign.sp.table$genus[i],foreign.sp.table$specificEpithet[i],'- Status:',foreign.sp$Foreign[x.which][1],'\n',sep = ' '))
   }
   #! Serape las asignadas en 1 (invasoras)
   foreign <- subset(foreign.sp, foreign.sp$Foreign == 1)
@@ -174,8 +174,8 @@ invasiveSp <- function(data                = NULL,
     readAndWrite(action = 'write', frmt = wrt.frmt, path = save.non.foreign.in,
                  name = 'input.rgbif.non.foreign', object = input.rgbif.no.foreign)
   }
-  tab.info$ForeignSp <- length(unique(foreign$species))
-  tab.info$NonForeignSp <- length(unique(foreign$no.foreign))
+  tab.info$Foreign.Sp <- length(unique(foreign$species))
+  tab.info$Non.Foreign.Sp <- length(unique(no.foreign$species))
   return(tab.info)
-uni
+
 }

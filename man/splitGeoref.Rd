@@ -12,8 +12,8 @@ splitGeoref(data = NULL, rd.frmt = "readRDS", path = NULL, min.occ = 3,
 \item{data}{Vector of characters. Name of the input file.}
 
 \item{rd.frmt}{Vector of characters. The file format to read. 
-By default it will be read  as a  R object using 
-\code{'readRDS'} argument, but it can be read as plain text using 
+By default it will be read  as a  R object using the
+\code{'readRDS'} argument, but it can be read as plain text using the
 \code{'readTXT'} argument. See details.}
 
 \item{path}{Vector of characters. Path to the data file(s).}

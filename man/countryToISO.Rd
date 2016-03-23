@@ -32,7 +32,7 @@ geographical data from electronic biodatabases.
 R-Alarcon Viviana and Miranda-Esquivel Daniel R.
 }
 \references{
-[1]ISO 2015. International standard for country codes and codes for their subdivisions. Country codes - iso 3166.  International Organization for Standardization. Available online at \url{http://www.iso.org/iso/country_codes}.
+[1] ISO 2015. International standard for country codes and codes for their subdivisions. Country codes - iso 3166.  International Organization for Standardization. Available online at \url{http://www.iso.org/iso/country_codes}.
 }
 \seealso{
 \code{\link{countryToCentroid}}

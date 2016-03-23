@@ -20,8 +20,8 @@
 #'@param save.name Vector of characters. Name of the output file. 
 #'
 #'@param  wrt.frmt Vector of characters. Format to save output
-#'file. By default it will be written  as a  R object using 
-#\code{'saveRDS'} argument, but it can be saved as plain text using 
+#'file. By default it will be written  as a  R object using the
+#\code{'saveRDS'} argument, but it can be saved as plain text using the
 #\code{'saveTXT'} argument. See details.
 #'
 #'@param save.in  Vector od characters. Path to the output file.
@@ -100,9 +100,9 @@ readDbBash <- function(data         = NULL,
   temp.tab <- read.table(pipe(paste('cut -f', columns, data, sep = ' ')), 
                              header = TRUE, sep = '\t', na.strings = NA )
   tab.info <- as.data.frame(matrix(NA,1,3))
-  colnames(tab.info) <- c('Initial.Occurr','Final.Occurr','Total.sp')
-  rownames(tab.info) <- 'Initial.tab'
-  tab.info$Initial.Occurr <- nrow(temp.tab)
+  colnames(tab.info) <- c('Initial.Occ','Final.Occ','Total.Sp')
+  #rownames(tab.info) <- 'Initial.tab'
+  tab.info$Initial.Occ <- nrow(temp.tab)
   setwd(initialWd)
   #! If you use the species column and need delete duplicates and row without 
   #! species name, then delete.na.in.sp == T
@@ -134,8 +134,8 @@ readDbBash <- function(data         = NULL,
                  name = save.name, object = temp.tab)
   }
   
-  tab.info$Final.Occurr <- nrow(temp.tab)
-  tab.info$Total.sp <- length(unique(temp.tab$species))
+  tab.info$Final.Occ <- nrow(temp.tab)
+  tab.info$Total.Sp <- length(unique(temp.tab$species))
   
   return(tab.info)
 

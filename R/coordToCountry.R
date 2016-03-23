@@ -5,7 +5,7 @@
 #'@description Give a coordinate in decimal degree format to assign the
 #'corresponding country name in English.
 #'
-#'@param coordinatesTable  Data.Frame class. A data frame with at least two columns
+#'@param coordinatesTable  Data Frame class. A data frame with at least two columns
 #'called \code{decimalLatitude} and \code{'decimalLongitude'}.
 #'
 #'@details
